@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2216%22 font-family=%22Arial%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EF%26amp;L%3C/text%3E%3C/svg%3E">
+<title>Engagements Promo F&amp;L</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Base (remplace le cadre fourni par Claude) */
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font-size:14px;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: enseigne de supermarché en noir et blanc — bandeau noir plein, onglets façon intercalaires blancs, plan des 4 emplacements par semaine */
+:root{
+  --bg:#f2f2f2; --surface:#ffffff; --ink:#111111; --muted:#5e5e5e; --line:#dcdcdc;
+  --leaf:#111111; --leaf-soft:#ebebeb; --tomato:#111111; --tomato-soft:#ebebeb;
+  --amber:#5e5e5e; --amber-soft:#ebebeb; --ok:#111111; --on-accent:#ffffff;
+  --band:#111111; --band-ink:#ffffff; --band-deep:#3a3a3a;
+  --z1:#111111; --z2:#111111; --z3:#111111; --z4:#111111; --z5:#111111; --z-ink:#ffffff;
+  --font-display:"Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body:"Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e0e0e; --surface:#1a1a1a; --ink:#f4f4f4; --muted:#a3a3a3; --line:#333333;
+  --leaf:#f4f4f4; --leaf-soft:#2a2a2a; --tomato:#f4f4f4; --tomato-soft:#2a2a2a;
+  --amber:#a3a3a3; --amber-soft:#2a2a2a; --ok:#f4f4f4; --on-accent:#111111;
+  --band:#000000; --band-ink:#ffffff; --band-deep:#2e2e2e;
+  --z1:#f4f4f4; --z2:#f4f4f4; --z3:#f4f4f4; --z4:#f4f4f4; --z5:#f4f4f4; --z-ink:#111111; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e0e0e; --surface:#1a1a1a; --ink:#f4f4f4; --muted:#a3a3a3; --line:#333333;
+  --leaf:#f4f4f4; --leaf-soft:#2a2a2a; --tomato:#f4f4f4; --tomato-soft:#2a2a2a;
+  --amber:#a3a3a3; --amber-soft:#2a2a2a; --ok:#f4f4f4; --on-accent:#111111;
+  --band:#000000; --band-ink:#ffffff; --band-deep:#2e2e2e;
+  --z1:#f4f4f4; --z2:#f4f4f4; --z3:#f4f4f4; --z4:#f4f4f4; --z5:#f4f4f4; --z-ink:#111111; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.45}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;display:grid;gap:20px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+.band{background:var(--band);color:var(--band-ink)}
+.band-in{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 0;display:grid;gap:14px}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,6vw,44px);line-height:.95;margin:0;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance}
+h1 span{display:inline-block;background:var(--band-ink);color:var(--band);padding:0 8px;border-radius:4px;transform:skewX(-8deg)}
+.sub{color:var(--band-ink);opacity:.9;margin:8px 0 0;font-size:15px;font-weight:500}
+h2,h3{font-family:var(--font-display)}
+button{font:inherit;cursor:pointer}
+.btn{border:0;border-radius:6px;padding:10px 18px;font-weight:700;background:var(--leaf);color:var(--on-accent);text-transform:uppercase;letter-spacing:.03em;font-size:14px}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.6;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--tomato);color:var(--on-accent)}
+.btn:focus-visible,.chip:focus-visible,.card:focus-visible,.tab:focus-visible,.slot-item:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+
+.tabs{display:flex;gap:4px}
+.tab{border:0;background:var(--band-deep);color:var(--band-ink);padding:10px 16px;font-family:var(--font-display);font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.03em;border-radius:8px 8px 0 0;opacity:.92}
+.tab:hover{opacity:1}
+.tab[aria-selected="true"]{background:var(--bg);color:var(--ink);opacity:1}
+.tab:focus-visible{outline-color:var(--band-ink)}
+.panel{display:grid;gap:20px}
+
+/* Saisie */
+.entry{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:14px}
+.entry h2{font-family:var(--font-display);font-size:20px;margin:0}
+.entry-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;align-items:end}
+.entry-grid .s2{grid-column:span 2}
+.total{grid-column:span 1;background:var(--leaf-soft);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;line-height:1.3;min-height:40px;display:grid;align-content:center}
+.total b{color:var(--ink);font-size:15px}
+@media (max-width:860px){.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.entry-grid .s2{grid-column:span 1}.entry-grid .wide,.entry-grid .total{grid-column:1/-1}}
+.entry-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+
+.week-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.week-head h2{font-family:var(--font-display);font-size:22px;margin:0}
+.week-head h2 small{font-family:var(--font-body);font-size:14px;color:var(--muted);font-weight:500;margin-left:6px}
+.week-nav{display:flex;gap:6px}
+.week-nav .btn{padding:8px 12px}
+.plan{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:560px){.plan{grid-template-columns:1fr}}
+.slot{background:var(--surface);border:2px solid var(--zc);border-radius:8px;padding:0;display:grid;grid-template-rows:auto 1fr;min-height:240px;min-width:0;overflow:hidden}
+.slot h3{margin:0;padding:10px 16px;background:var(--zc);color:var(--z-ink);font-family:var(--font-display);font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.slot h3 span{font-family:var(--font-body);font-size:13px;font-weight:600;opacity:.9;text-transform:none;letter-spacing:0}
+.slot-body{padding:12px;display:grid;gap:8px;align-content:start}
+.slot-item{display:grid;gap:3px;text-align:left;border:1px solid var(--line);background:var(--bg);color:inherit;border-radius:10px;padding:10px 12px;min-width:0}
+.slot-item:hover{border-color:var(--zc)}
+.slot-item b{font-size:17px;overflow-wrap:anywhere}
+.slot-item .px{font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--zc);font-variant-numeric:tabular-nums}
+.slot-item span{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.slot-empty{font-size:14px;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:24px 10px;text-align:center;display:grid;gap:8px;justify-items:center}
+.days{grid-column:1/-1;border:1px solid var(--line);border-radius:10px;padding:10px 12px 12px;margin:0;display:grid;gap:8px}
+.days legend{font-size:13px;font-weight:600;color:var(--muted);padding:0 4px}
+.days-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.days-grid label{font-size:12px;text-align:center}
+.days-grid input{text-align:center;padding:8px 4px}
+.days-foot{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+.linkbtn{border:0;background:none;color:var(--leaf);font-weight:700;font-size:13px;padding:2px 0;text-decoration:underline}
+.rayon{background:var(--surface);border:2px solid var(--z5);border-radius:8px;overflow:hidden}
+.rayon h3{margin:0;padding:10px 16px;background:var(--z5);color:var(--z-ink);font-family:var(--font-display);font-size:24px;text-transform:uppercase;letter-spacing:.02em;font-weight:800;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.rayon h3 span{font-family:var(--font-body);font-size:13px;font-weight:600;opacity:.9;text-transform:none;letter-spacing:0}
+.rayon-grid{padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:8px}
+.rayon-grid .slot-empty{grid-column:1/-1}
+.mini{display:grid;gap:4px;margin-top:4px}
+.mini .bar{height:6px}
+.mini-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mini-row b{color:var(--ink)}
+.mini-row .warn{color:var(--tomato);font-weight:700}
+.week-pick{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.week-pick select{width:auto;max-width:100%;font-weight:600}
+.week-pick .btn{padding:8px 12px}
+.slot-empty button{border:0;background:none;color:var(--leaf);font-weight:700;text-decoration:underline}
+
+/* Suivi */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stat{background:var(--surface);padding:14px 16px;display:grid;gap:2px}
+.stat b{font-family:var(--font-display);font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat small{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+@media (max-width:480px){.stat{padding:10px}.stat b{font-size:21px}.stat small{font-size:10px}}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{flex:1 1 180px;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 14px;font:inherit;font-size:14px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;text-align:left;color:inherit;width:100%;min-width:0}
+.card:hover{border-color:var(--leaf)}
+.card-top{display:flex;gap:10px;justify-content:space-between;align-items:start}
+.prod{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.15;margin:0;min-width:0;overflow-wrap:anywhere}
+.meta{color:var(--muted);font-size:13px;margin-top:2px;overflow-wrap:anywhere}
+.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0;max-width:50%}
+.pill{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.pill.zone{background:var(--zc);color:var(--z-ink)}
+.pill.now{background:var(--leaf-soft);color:var(--leaf)}
+.pill.soon{background:var(--amber-soft);color:var(--amber)}
+.pill.done{background:var(--line);color:var(--muted)}
+.pill.warn{background:var(--tomato-soft);color:var(--tomato)}
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-variant-numeric:tabular-nums}
+.prices div{display:grid;gap:1px}
+.prices small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.prices b{font-size:17px}
+.prices .tag{background:var(--leaf-soft);border-radius:8px;padding:4px 8px;margin:-4px -8px}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--leaf);border-radius:99px}
+.bar i.over{background:var(--amber)}
+.prog{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:5px;gap:8px}
+.prog b{color:var(--ink)}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:32px 20px;text-align:center;display:grid;gap:10px;justify-items:center}
+.empty h2{font-family:var(--font-display);margin:0;font-size:20px}
+.empty p{margin:0;color:var(--muted);max-width:46ch}
+.note{font-size:13px;color:var(--muted);margin:0}
+.note.alert{color:var(--ink);font-weight:700}
+
+/* Dialog */
+dialog{border:0;border-radius:16px;padding:0;width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dlg{display:grid;gap:16px;padding:20px}
+.dlg h2{font-family:var(--font-display);margin:0;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid .full{grid-column:1/-1}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0;font-weight:400}
+textarea{min-height:60px;resize:vertical}
+.calc{background:var(--leaf-soft);border-radius:10px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px 20px;font-variant-numeric:tabular-nums;font-size:14px}
+.calc b{font-size:16px}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:12px;margin:0;display:grid;gap:10px}
+legend{font-weight:700;font-size:13px;padding:0 4px}
+.cmds{display:grid;gap:6px;font-variant-numeric:tabular-nums}
+.cmd{display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:14px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.cmd button{border:0;background:none;color:var(--tomato);font-size:13px;padding:2px 6px}
+.cmd-add{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+.actions .right{display:flex;gap:8px;margin-left:auto}
+.confirm{background:var(--tomato-soft);color:var(--tomato);border-radius:10px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;font-weight:600}
+.recap{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:14px}
+.recap h2{font-family:var(--font-display);font-size:22px;margin:0}
+.recap .lead{margin:-8px 0 0;color:var(--muted);font-size:14px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.recap-table{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
+.recap-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;padding:10px;border-bottom:1px solid var(--line);background:var(--bg)}
+.recap-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;font-variant-numeric:tabular-nums}
+.recap-table tr:last-child td{border-bottom:0}
+.recap-table td.num{text-align:right;white-space:nowrap}
+.recap-table input{padding:6px 8px;font-size:14px}
+.recap-table input[type=number]{width:90px;text-align:right}
+.zdot{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--zc);margin-right:6px;vertical-align:-1px}
+.ecoule{font-weight:700}
+.ecoule.low{color:var(--ink);background:var(--leaf-soft);padding:1px 6px;border-radius:4px;text-decoration:underline;text-underline-offset:3px}
+.ecoule.ok{color:var(--ok)}
+.mini-row .warn{color:var(--tomato);font-weight:700}
+.tabs{overflow-x:auto;scrollbar-width:none}
+.tab{white-space:nowrap}
+.old-search{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.old-search input{flex:1 1 260px;font-size:16px;padding:12px 14px;border-radius:12px;background:var(--surface)}
+.old-list{display:grid;gap:10px}
+.old-item{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--zc);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2fr) auto;gap:10px 20px;align-items:center}
+@media (max-width:760px){.old-item{grid-template-columns:1fr}}
+.old-item .prod{font-size:18px}
+.old-figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-variant-numeric:tabular-nums}
+.old-figs div{display:grid;gap:1px}
+.old-figs small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.old-figs b{font-size:16px}
+.old-notes{grid-column:1/-1;font-size:14px;color:var(--muted);display:grid;gap:4px}
+.old-notes q{color:var(--ink);quotes:"« " " »"}
+.old-item .btn{padding:8px 14px;white-space:nowrap}
+tr.flash td{background:var(--amber-soft)}
+.meteo{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:10px}
+.meteo-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 12px}
+.meteo-head h3{margin:0;font-size:18px;text-transform:uppercase;letter-spacing:.03em}
+.meteo-head .note{font-size:12px}
+.meteo-days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.mday{border:1px solid var(--line);border-radius:6px;padding:8px 6px;text-align:center;display:grid;gap:2px;min-width:0;font-variant-numeric:tabular-nums}
+.mday small{font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--muted)}
+.mday .ciel{font-size:13px;font-weight:600;overflow-wrap:anywhere}
+.mday .t{font-family:var(--font-display);font-size:20px;font-weight:800;line-height:1.1}
+.mday .t span{font-size:14px;color:var(--muted);font-weight:600}
+.mday .pl{font-size:12px;color:var(--muted)}
+.meteo-sum{font-size:14px;font-weight:600}
+.meteo details summary{cursor:pointer;font-weight:700;font-size:13px;text-decoration:underline;width:max-content}
+.meteo-edit{display:grid;gap:8px;margin-top:10px}
+.meteo-edit .row{display:grid;grid-template-columns:70px 1.4fr 1fr 1fr 1fr;gap:6px;align-items:center;font-size:13px}
+.meteo-edit .row.hd{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.meteo-edit input,.meteo-edit select{padding:6px;font-size:14px}
+@media (max-width:520px){.mday .ciel{font-size:11px}.mday .t{font-size:17px}.meteo-edit .row{grid-template-columns:44px 1.3fr 1fr 1fr 1fr}}
+.old-meteo{font-size:13px;color:var(--muted)}
+.gate{position:fixed;inset:0;z-index:50;background:var(--band);display:grid;place-items:center;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px}
+.gate-card{background:var(--surface);color:var(--ink);border-radius:10px;padding:24px;width:min(420px,100%);display:grid;gap:14px}
+.gate-card h2{margin:0;font-size:28px;text-transform:uppercase;line-height:1}
+.gate-card p{margin:0}
+.gate-card label small{font-weight:500}
+.foot{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;font-size:13px;color:var(--muted);padding-top:8px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;z-index:20}
+@media (prefers-reduced-motion:no-preference){.card,.slot-item{transition:border-color .15s}}
+</style>
+</head>
+<body>
+
+
+<header class="band">
+  <div class="band-in">
+    <div>
+      <h1>Engagements <span>promo</span> F&amp;L</h1>
+      <p class="sub">Ce qui passe en TG et au podium chaque semaine, à quel prix, en quelle quantité.</p>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" id="tab-btn-semaine" aria-controls="tab-semaine" data-tab="semaine" type="button">Semaine en cours</button>
+      <button class="tab" role="tab" id="tab-btn-saisie" aria-controls="tab-saisie" data-tab="saisie" type="button">Saisie</button>
+      <button class="tab" role="tab" id="tab-btn-suivi" aria-controls="tab-suivi" data-tab="suivi" type="button">Suivi</button>
+      <button class="tab" role="tab" id="tab-btn-anciennes" aria-controls="tab-anciennes" data-tab="anciennes" type="button">Anciennes promos</button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+
+  <p class="note" id="status">Chargement des engagements…</p>
+
+  <!-- ===== Onglet Semaine ===== -->
+  <section class="panel" id="tab-semaine" role="tabpanel" aria-labelledby="tab-btn-semaine">
+    <div class="week-head">
+      <h2 id="plan-title">Semaine</h2>
+    </div>
+    <div id="meteo-cur"></div>
+    <div class="plan" id="plan"></div>
+    <div id="rayon-cur"></div>
+  </section>
+
+  <!-- ===== Onglet Saisie ===== -->
+  <section class="panel" id="tab-saisie" role="tabpanel" aria-labelledby="tab-btn-saisie">
+    <form class="entry" id="entry" novalidate>
+      <h2>Ajouter un engagement</h2>
+      <div class="entry-grid">
+        <label class="s2">Emplacement
+          <select id="e-empl" required></select>
+        </label>
+        <label class="s2">Semaine
+          <select id="e-sem" required></select>
+        </label>
+        <label class="s2 wide">Produit<input id="e-produit" required placeholder="Clémentine de Corse cat. I" autocomplete="off"></label>
+        <fieldset class="days"><legend>Colis par jour</legend>
+          <div class="days-grid" id="e-days"></div>
+          <div class="days-foot"><button class="linkbtn" type="button" data-fill="e">Copier le mardi sur les autres jours</button><span class="note">Laissez vide un jour sans livraison.</span></div>
+        </fieldset>
+        <label>Qté par colis<input id="e-uvc" type="number" min="0" step="any" inputmode="decimal" placeholder="10"></label>
+        <label>Unité
+          <select id="e-unite"></select>
+        </label>
+        <label class="s2"><span id="e-pv-lbl">Prix vente TTC €/kg</span><input id="e-pv" type="number" min="0" step="0.01" inputmode="decimal" placeholder="2,49"></label>
+        <div class="total s2" id="e-total" aria-live="polite">Total semaine</div>
+      </div>
+      <div class="entry-foot">
+        <p class="note" id="entry-msg">L'emplacement et la semaine restent sélectionnés pour enchaîner les saisies.</p>
+        <button class="btn" type="submit" id="e-save">Ajouter</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===== Onglet Suivi ===== -->
+  <section class="panel" id="tab-suivi" role="tabpanel" aria-labelledby="tab-btn-suivi" hidden>
+    <div class="week-head">
+      <h2 id="suivi-title">Semaine</h2>
+      <div class="week-pick">
+        <button class="btn ghost" type="button" id="sv-prev" aria-label="Semaine précédente">←</button>
+        <select id="sv-sem" aria-label="Choisir la semaine"></select>
+        <button class="btn ghost" type="button" id="sv-next" aria-label="Semaine suivante">→</button>
+      </div>
+    </div>
+    <div id="meteo-suivi"></div>
+    <section class="stats" aria-label="Résumé de la semaine">
+      <div class="stat"><small>Engagements</small><b id="st-n">–</b></div>
+      <div class="stat"><small>Colis de la semaine</small><b id="st-colis">–</b></div>
+      <div class="stat"><small>TG &amp; podium</small><b id="st-tg">–</b></div>
+    </section>
+    <div class="plan" id="plan-suivi"></div>
+    <div id="rayon-suivi"></div>
+
+    <section class="recap" aria-labelledby="recap-h">
+      <h2 id="recap-h">Récap de fin de semaine</h2>
+      <p class="lead">Notez ce qu'il reste de chaque promo à la fin de la semaine. Chaque ligne s'enregistre dès que vous quittez le champ.</p>
+      <div class="tbl-wrap">
+        <table class="recap-table">
+          <thead><tr><th>Produit</th><th>Emplacement</th><th style="text-align:right">Colis engagés</th><th style="text-align:right">Reste (colis)</th><th style="text-align:right">Écoulé</th><th>Commentaire</th></tr></thead>
+          <tbody id="recap-rows"></tbody>
+        </table>
+      </div>
+      <label for="recap-text">Bilan de la semaine
+        <textarea id="recap-text" rows="5" placeholder="Ce qui a bien marché, ce qui reste, ce qu'il faut ajuster pour la prochaine opération…"></textarea>
+      </label>
+      <div class="entry-foot">
+        <p class="note" id="recap-msg"></p>
+        <button class="btn" type="button" id="recap-save">Enregistrer le bilan</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== Onglet Anciennes promos ===== -->
+  <section class="panel" id="tab-anciennes" role="tabpanel" aria-labelledby="tab-btn-anciennes" hidden>
+    <div class="old-search">
+      <input id="old-q" type="search" placeholder="Produit, ou météo : clémentine, avocat pluie, froid…" aria-label="Rechercher un produit dans les anciennes promos" autocomplete="off">
+    </div>
+    <p class="note" id="old-count"></p>
+    <div class="old-list" id="old-list"></div>
+  </section>
+
+  <footer class="foot"><span id="who"></span><button class="linkbtn" type="button" id="logout">Changer de code ou de prénom</button></footer>
+</div>
+
+<dialog id="dlg">
+  <form class="dlg" id="form" novalidate>
+    <h2 id="dlg-title">Engagement</h2>
+    <div class="grid">
+      <label class="full">Produit<input id="f-produit" required></label>
+      <label>Emplacement<select id="f-empl"></select></label>
+      <label>Semaine<select id="f-sem"></select></label>
+      <fieldset class="days full"><legend>Colis par jour</legend>
+        <div class="days-grid" id="f-days"></div>
+        <div class="days-foot"><button class="linkbtn" type="button" data-fill="f">Copier le mardi sur les autres jours</button></div>
+      </fieldset>
+      <label>Qté par colis<input id="f-uvc" type="number" min="0" step="any" inputmode="decimal"></label>
+      <label>Unité<select id="f-unite"></select></label>
+      <label><span id="f-pv-lbl">Prix de vente TTC</span><input id="f-pv" type="number" min="0" step="0.01" inputmode="decimal"></label>
+      <label><span id="f-pa-lbl">Prix d'achat HT</span><input id="f-pa" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Facultatif"></label>
+      <label>Fournisseur<input id="f-fournisseur" placeholder="Facultatif"></label>
+      <label>TVA
+        <select id="f-tva"><option value="5.5">5,5 %</option><option value="10">10 %</option><option value="20">20 %</option></select>
+      </label>
+    </div>
+    <div class="calc" id="calc"></div>
+    <label>Notes<textarea id="f-notes" placeholder="Conditions, remise, livraison…"></textarea></label>
+    <p class="note alert" id="form-err" hidden></p>
+    <div class="confirm" id="confirm" hidden>
+      Supprimer cet engagement pour toute l'équipe ?
+      <button class="btn danger" type="button" id="del-yes">Supprimer</button>
+      <button class="btn ghost" type="button" id="del-no">Annuler</button>
+    </div>
+    <div class="actions">
+      <button class="btn ghost" type="button" id="btn-del">Supprimer</button>
+      <div class="right">
+        <button class="btn ghost" type="button" id="btn-cancel">Fermer</button>
+        <button class="btn" type="submit" id="btn-save">Enregistrer</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+
+<div class="gate" id="gate" hidden>
+  <form class="gate-card" id="gate-form" novalidate>
+    <h2>Engagements promo F&amp;L</h2>
+    <p class="note">Entrez le code magasin pour ouvrir l'app.</p>
+    <label for="g-code">Code magasin<input id="g-code" type="password" autocomplete="current-password" required></label>
+    <label for="g-nom">Votre prénom <small>(facultatif, pour savoir qui a modifié)</small><input id="g-nom" autocomplete="given-name"></label>
+    <p class="note alert" id="g-err" hidden></p>
+    <button class="btn" type="submit" id="g-go">Ouvrir</button>
+  </form>
+</div>
+
+<script src="config.js"></script>
+</body>
+</html>
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const EMPL = [
+    {k:'TG fruit 1', l:'TG fruit 1 (pomme)', c:'var(--z1)'},
+    {k:'TG fruit 2', l:'TG fruit 2 (banane)', c:'var(--z2)'},
+    {k:'TG légumes', c:'var(--z3)'},
+    {k:'Podium entrée', c:'var(--z4)'}
+  ];
+  const zLabel = k => (EMPL.find(z => z.k === k) || {}).l || k;
+  const zColor = k => (EMPL.find(z => z.k === k) || {}).c || 'var(--muted)';
+  const eur = n => (n != null && isFinite(n) ? n.toLocaleString('fr-FR',{style:'currency',currency:'EUR'}) : '–');
+  const num = n => (n != null && isFinite(n) ? n.toLocaleString('fr-FR',{maximumFractionDigits:2}) : '–');
+  const pct = n => (n != null && isFinite(n) ? n.toLocaleString('fr-FR',{maximumFractionDigits:1}) + ' %' : '–');
+  const toNum = v => { const n = parseFloat(String(v).replace(',','.')); return isFinite(n) ? n : null; };
+  const today = () => { const d = new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+  const fmtDate = s => s ? new Date(s+'T12:00:00Z').toLocaleDateString('fr-FR',{day:'numeric',month:'short',timeZone:'UTC'}) : '?';
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // ---------- Semaines ISO ----------
+  const DAY = 864e5;
+  function weekOf(dateStr){
+    const d = new Date(dateStr+'T12:00:00Z');
+    d.setUTCDate(d.getUTCDate() - ((d.getUTCDay()+6)%7) + 3); // jeudi
+    const y = d.getUTCFullYear();
+    const w = 1 + Math.floor((d - Date.UTC(y,0,1)) / DAY / 7);
+    return y + '-W' + String(w).padStart(2,'0');
+  }
+  function weekRange(wk){
+    const m = /^(\d{4})-W(\d{2})$/.exec(wk||''); if (!m) return [null,null];
+    const y = +m[1], n = +m[2];
+    const jan4 = Date.UTC(y,0,4);
+    const mon = jan4 - ((new Date(jan4).getUTCDay()+6)%7)*DAY + (n-1)*7*DAY;
+    const iso = t => new Date(t).toISOString().slice(0,10);
+    return [iso(mon), iso(mon + 6*DAY)];
+  }
+  const shiftWeek = (wk, k) => { const [mon] = weekRange(wk); const t = Date.parse(mon+'T12:00:00Z') + k*7*DAY; return weekOf(new Date(t).toISOString().slice(0,10)); };
+  const wNum = wk => wk ? 'S' + +wk.slice(6) : '';
+  const wLabel = wk => { const [a,b] = weekRange(wk); return a ? `${wNum(wk)} · ${fmtDate(a)} → ${fmtDate(b)}` : ''; };
+  const curWeek = weekOf(today());
+  function weekOptions(selected){
+    const set = []; for (let i=-12;i<=20;i++) set.push(shiftWeek(curWeek,i));
+    if (selected && !set.includes(selected)) { set.push(selected); set.sort(); }
+    return set.map(w => `<option value="${w}"${w===selected?' selected':''}>${wLabel(w)}${w===curWeek?' (cette semaine)':''}</option>`).join('');
+  }
+  const UNITES = ['kg','pièce','barquette','sachet','botte','filet'];
+  const uniteOptions = sel => UNITES.concat(sel && !UNITES.includes(sel) ? [sel] : []).map(u => `<option${u===sel?' selected':''}>${u}</option>`).join('');
+  const DAYS = ['Mar','Mer','Jeu','Ven','Sam'];
+  ['e','f'].forEach(pf => { $('#'+pf+'-days').innerHTML = DAYS.map((d,i) => `<label for="${pf}-d${i}">${d}<input id="${pf}-d${i}" type="number" min="0" step="any" inputmode="decimal"></label>`).join(''); });
+  const readDays = pf => DAYS.map((_,i) => { const v = toNum($('#'+pf+'-d'+i).value); return v != null && v > 0 ? v : 0; });
+  const writeDays = (pf, arr) => DAYS.forEach((_,i) => { $('#'+pf+'-d'+i).value = arr && arr[i] ? arr[i] : ''; });
+  const sumDays = arr => arr.reduce((a,b) => a + (b||0), 0);
+  // anciens engagements : colis/jour × nb de jours → répartis du lundi au nombre de jours
+  // ancien format lundi→dimanche (7 cases) : on garde mardi→samedi
+  const daysOf = e => Array.isArray(e.colisJours) ? (e.colisJours.length === 7 ? e.colisJours.slice(1,6) : e.colisJours) : (e.colisJour != null ? DAYS.map(() => e.colisJour) : null);
+  document.addEventListener('click', ev => {
+    const b = ev.target.closest('[data-fill]'); if (!b) return;
+    const pf = b.dataset.fill; const first = $('#'+pf+'-d0').value;
+    if (!first) { $('#'+pf+'-d0').focus(); return; }
+    for (let i=1;i<DAYS.length;i++) $('#'+pf+'-d'+i).value = first;
+    $('#'+(pf==='e'?'entry':'form')).dispatchEvent(new Event('input'));
+  });
+  const RAYON = 'Rayon';
+  const isRayon = e => !e.emplacement || e.emplacement === RAYON;
+  const emplOptions = sel => EMPL.map(z => `<option value="${z.k}"${z.k===sel?' selected':''}>${zLabel(z.k)}</option>`).join('') + `<option value="${RAYON}"${sel===RAYON?' selected':''}>En rayon</option>`;
+
+  // ---------- État ----------
+  let col = null, uid = null, canWrite = true, loaded = false;
+  let items = [];
+  let tab = 'semaine', suiviWeek = curWeek;
+  let editing = null;
+  try { tab = localStorage.getItem('eng-tab') || tab; const sw = localStorage.getItem('eng-suivi-sem'); if (/^\d{4}-W\d{2}$/.test(sw||'')) suiviWeek = sw; } catch(e){}
+  const TABS = ['semaine','saisie','suivi','anciennes'];
+  if (!TABS.includes(tab)) tab = 'semaine';
+  if (TABS.includes(location.hash.slice(1))) tab = location.hash.slice(1);
+
+  const semOf = e => e.semaine || (e.debut ? weekOf(e.debut) : null);
+
+  function calc(e){
+    const tva = (e.tva ?? 5.5)/100;
+    const pvHT = e.pv != null ? e.pv/(1+tva) : null;
+    const marge = (pvHT != null && e.pa != null) ? pvHT - e.pa : null;
+    const tm = (marge != null && pvHT) ? marge/pvHT*100 : null;
+    const dj = daysOf(e);
+    const jours = dj ? dj.filter(v => v > 0).length : null;
+    const colisSem = dj ? sumDays(dj) : (e.unite === 'colis' ? e.qte ?? null : null);
+    const qteVente = colisSem != null ? (e.uvc ? colisSem * e.uvc : null) : (e.qte ?? null);
+    const engage = colisSem != null ? colisSem : (e.qte ?? null);
+    const progUnit = colisSem != null ? 'colis' : (e.unite || 'kg');
+    const cmd = (e.commandes||[]).reduce((s,c)=>s+(c.qte||0),0);
+    const reste = engage != null ? engage - cmd : null;
+    const real = engage ? cmd/engage*100 : null;
+    const sem = semOf(e);
+    const [deb, fin] = sem ? weekRange(sem) : [e.debut, e.fin];
+    const t = today();
+    let st = 'now';
+    if (deb && t < deb) st = 'soon'; else if (fin && t > fin) st = 'done';
+    // à commander : reste du volume et l'engagement démarre dans moins de 7 jours ou est en cours
+    const urgent = st !== 'done' && reste > 0 && deb && (Date.parse(deb) - Date.parse(t))/DAY <= 7;
+    return {pvHT, marge, tm, cmd, reste, real, st, urgent, sem, jours, colisSem, qteVente, engage, progUnit};
+  }
+
+  // ---------- Onglets ----------
+  function showTab(t){
+    tab = t;
+    document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+    $('#tab-semaine').hidden = t !== 'semaine';
+    $('#tab-saisie').hidden = t !== 'saisie';
+    $('#tab-suivi').hidden = t !== 'suivi';
+    $('#tab-anciennes').hidden = t !== 'anciennes';
+    try { localStorage.setItem('eng-tab', t); } catch(e){}
+    if (location.hash !== '#'+t) history.replaceState(null, '', '#'+t);
+  }
+  window.addEventListener('hashchange', () => { if (TABS.includes(location.hash.slice(1))) showTab(location.hash.slice(1)); });
+
+  // ---------- Rendu ----------
+  function qtyLine(e){
+    const c = calc(e); const u = esc(e.unite||'kg');
+    const dj = daysOf(e);
+    if (dj) return `${dj.map((v,i) => v ? `${DAYS[i]} <b style="font-size:inherit">${num(v)}</b>` : '').filter(Boolean).join(' · ')}<br>${num(c.colisSem)} colis × ${num(e.uvc)} ${u}${c.qteVente!=null?' = '+num(c.qteVente)+' '+u:''}`;
+    return `${num(e.qte)} ${u}`;
+  }
+  const byName = (x,y) => String(x.produit).localeCompare(String(y.produit));
+  function itemHtml(e, color, progress){
+    const c = calc(e); const u = esc(e.unite||'kg');
+    let prog = '';
+    if (progress && e.resteFin != null){
+      const ec = c.engage ? (c.engage - e.resteFin)/c.engage*100 : null;
+      prog = `<div class="mini"><div class="mini-row"><span>Reste fin de semaine <b>${num(e.resteFin)} colis</b></span>${ec!=null?`<span class="${ec<80?'warn':''}">écoulé ${Math.round(ec)} %</span>`:''}</div></div>`;
+    } else if (false){
+      const w = c.real != null ? Math.min(c.real,100) : 0;
+      const pu = esc(c.progUnit);
+      prog = `<div class="mini"><div class="mini-row"><span>Commandé <b>${num(c.cmd)}</b> / ${num(c.engage)} ${pu}</span>${c.reste>0 ? `<span class="${c.urgent?'warn':''}">reste ${num(c.reste)}</span>` : (c.reste<0 ? `<span>+${num(-c.reste)}</span>` : '<span>tenu</span>')}</div>
+        <div class="bar"><i class="${c.real>100?'over':''}" style="width:${w}%;${c.real>100?'':'background:'+color}"></i></div></div>`;
+    }
+    return `<button class="slot-item" type="button" data-id="${esc(e.id)}" style="--zc:${color}"><b>${esc(e.produit)}</b><div class="px">${e.pv!=null ? eur(e.pv)+'<small style="font-size:13px;font-weight:600"> /'+u+'</small>' : 'Prix ?'}</div><span>${qtyLine(e)}</span>${prog}</button>`;
+  }
+  const emptyHtml = (label, empl, week) => `<div class="slot-empty">${loaded ? `${label}${canWrite ? `<button type="button" data-add-empl="${esc(empl)}" data-week="${week}">Ajouter un produit</button>` : ''}` : 'Chargement…'}</div>`;
+  const countTxt = n => n ? n + (n>1?' produits':' produit') : '';
+  function renderBoard(week, planEl, rayonEl, progress){
+    const wkItems = items.filter(e => semOf(e) === week);
+    planEl.innerHTML = EMPL.map(z => {
+      const list = wkItems.filter(e => e.emplacement === z.k).sort(byName);
+      return `<div class="slot" style="--zc:${z.c}"><h3>${esc(zLabel(z.k))}<span>${countTxt(list.length)}</span></h3>
+        <div class="slot-body">${list.length ? list.map(e => itemHtml(e, z.c, progress)).join('') : emptyHtml('Rien d\'engagé', z.k, week)}</div></div>`;
+    }).join('');
+    const ray = wkItems.filter(isRayon).sort(byName);
+    rayonEl.innerHTML = `<section class="rayon"><h3>En rayon<span>${countTxt(ray.length)}</span></h3>
+      <div class="rayon-grid">${ray.length ? ray.map(e => itemHtml(e, 'var(--z5)', progress)).join('') : emptyHtml('Aucun engagement qui reste en rayon', RAYON, week)}</div></section>`;
+    return wkItems;
+  }
+  const weekTitle = wk => { const [a,b] = weekRange(wk); return `Semaine ${+wk.slice(6)}<small>${fmtDate(a)} → ${fmtDate(b)}${wk===curWeek?' · en cours':''}</small>`; };
+  function renderPlan(){
+    $('#plan-title').innerHTML = weekTitle(curWeek);
+    renderMeteo($('#meteo-cur'), curWeek, false);
+    renderBoard(curWeek, $('#plan'), $('#rayon-cur'), false);
+  }
+  function renderSuivi(){
+    $('#suivi-title').innerHTML = weekTitle(suiviWeek);
+    $('#sv-sem').innerHTML = weekOptions(suiviWeek);
+    const wk = renderBoard(suiviWeek, $('#plan-suivi'), $('#rayon-suivi'), true);
+    const cs = wk.map(calc).filter(c => c.progUnit === 'colis');
+    const sum = f => cs.reduce((a,c) => a + (f(c)||0), 0);
+    $('#st-n').textContent = wk.length;
+    $('#st-colis').textContent = num(sum(c => c.engage));
+    $('#st-tg').textContent = wk.filter(e => !isRayon(e)).length;
+    renderRecap(wk);
+    renderMeteo($('#meteo-suivi'), suiviWeek, true);
+  }
+
+  // ---------- Récap de fin de semaine ----------
+  let recaps = {}, recapCol = null, recapDirty = false, recapPending = false;
+  const emplLabel = e => isRayon(e) ? 'En rayon' : zLabel(e.emplacement);
+  function renderRecap(wk){
+    const tb = $('#recap-rows');
+    if (tb.contains(document.activeElement)) { recapPending = true; }
+    else {
+      recapPending = false;
+      const rows = wk.slice().sort((a,b) => (isRayon(a)-isRayon(b)) || String(emplLabel(a)).localeCompare(String(emplLabel(b))) || byName(a,b));
+      tb.innerHTML = rows.length ? rows.map(e => {
+        const c = calc(e);
+        const ec = (c.engage && e.resteFin != null) ? (c.engage - e.resteFin)/c.engage*100 : null;
+        const dis = canWrite ? '' : ' disabled';
+        return `<tr data-row="${esc(e.id)}">
+          <td><b>${esc(e.produit)}</b></td>
+          <td style="white-space:nowrap"><span class="zdot" style="--zc:${isRayon(e)?'var(--z5)':zColor(e.emplacement)}"></span>${esc(emplLabel(e))}</td>
+          <td class="num">${num(c.engage)}</td>
+          <td class="num"><input type="number" min="0" step="any" inputmode="decimal" id="r-reste-${esc(e.id)}" data-field="resteFin" value="${e.resteFin ?? ''}" aria-label="Reste en colis pour ${esc(e.produit)}"${dis}></td>
+          <td class="num"><span class="ecoule ${ec==null?'':(ec<80?'low':'ok')}">${ec==null?'–':Math.round(ec)+' %'}</span></td>
+          <td><input id="r-com-${esc(e.id)}" data-field="commentaireFin" value="${esc(e.commentaireFin||'')}" placeholder="Abîmé, mauvais emplacement, rupture…" aria-label="Commentaire pour ${esc(e.produit)}"${dis}></td>
+        </tr>`;
+      }).join('') : `<tr><td colspan="6" class="note" style="padding:16px">Aucun engagement cette semaine.</td></tr>`;
+    }
+    const ta = $('#recap-text');
+    if (document.activeElement !== ta && !recapDirty) ta.value = recaps[suiviWeek]?.texte || '';
+    ta.disabled = !canWrite || !recapCol; $('#recap-save').hidden = !canWrite;
+    const r = recaps[suiviWeek];
+    if (!recapDirty) $('#recap-msg').textContent = r?.majLe ? `Enregistré le ${new Date(r.majLe).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}.` : '';
+  }
+  $('#recap-rows').addEventListener('change', async ev => {
+    const inp = ev.target.closest('input[data-field]'); if (!inp || !col) return;
+    const id = inp.closest('tr').dataset.row; const f = inp.dataset.field;
+    const val = f === 'resteFin' ? toNum(inp.value) : inp.value.trim();
+    const patch = {[f]: val, majLe: new Date().toISOString()}; if (uid) patch.majPar = uid;
+    try { await col.doc(id).update(patch); toast('Récap enregistré'); }
+    catch(e){ toast(errText(e)); }
+  });
+  $('#recap-rows').addEventListener('focusout', () => { setTimeout(() => { if (recapPending && !$('#recap-rows').contains(document.activeElement)) renderSuivi(); }, 0); });
+  $('#recap-text').addEventListener('input', () => { recapDirty = true; $('#recap-msg').textContent = 'Modifications non enregistrées.'; });
+  $('#recap-save').addEventListener('click', async () => {
+    if (!recapCol) return;
+    const now = new Date().toISOString();
+    const data = {semaine: suiviWeek, texte: $('#recap-text').value.trim(), majLe: now}; if (uid) data.majPar = uid;
+    const btn = $('#recap-save'); btn.disabled = true;
+    try { await recapCol.doc(suiviWeek).set(data); recapDirty = false; recaps[suiviWeek] = data; renderRecap(items.filter(e => semOf(e) === suiviWeek)); toast('Bilan enregistré'); }
+    catch(e){ $('#recap-msg').textContent = errText(e); }
+    finally { btn.disabled = false; }
+  });
+  // ---------- Météo Maisons-Alfort ----------
+  const CIELS = ['Soleil','Éclaircies','Nuageux','Couvert','Brouillard','Averses','Pluie','Orage','Neige','Vent fort'];
+  let meteo = {}, meteoCol = null, meteoEditing = false;
+  const salesDates = wk => { const [mon] = weekRange(wk); const t0 = Date.parse(mon+'T12:00:00Z'); return DAYS.map((_,i) => new Date(t0 + (i+1)*DAY).toISOString().slice(0,10)); };
+  const dayFor = (m, date) => (m?.jours || []).find(j => j.date === date) || null;
+  function meteoSummary(wk){
+    const m = meteo[wk]; if (!m) return '';
+    const js = salesDates(wk).map(d => dayFor(m, d)).filter(Boolean);
+    const maxs = js.map(j => j.tmax).filter(v => v != null), mins = js.map(j => j.tmin).filter(v => v != null);
+    if (!maxs.length && !js.some(j => j.ciel)) return m.resume || '';
+    const parts = [];
+    if (mins.length && maxs.length) parts.push(`${Math.min(...mins)}° à ${Math.max(...maxs)}°`);
+    const avg = maxs.length ? maxs.reduce((a,b)=>a+b,0)/maxs.length : null;
+    if (avg != null) parts.push(avg < 8 ? 'froid' : avg < 13 ? 'frais' : avg < 20 ? 'doux' : avg < 26 ? 'chaud' : 'très chaud');
+    const pl = js.map(j => j.pluie).filter(v => v != null);
+    const wet = js.filter(j => /pluie|averse|orage/i.test(j.ciel||'')).length + pl.filter(v => v >= 1).length;
+    if (pl.length || js.some(j => j.ciel)) parts.push(wet ? `pluie ${js.filter(j => (j.pluie||0) >= 1 || /pluie|averse|orage/i.test(j.ciel||'')).length} j` : 'sec');
+    const ciels = js.map(j => j.ciel).filter(Boolean);
+    if (ciels.length){ const cnt = {}; ciels.forEach(c => cnt[c] = (cnt[c]||0)+1); parts.push(Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0][0].toLowerCase()); }
+    return parts.join(' · ');
+  }
+  function renderMeteo(el, wk, editable){
+    if (editable && meteoEditing && el.contains(document.activeElement)) return;
+    const m = meteo[wk]; const dates = salesDates(wk);
+    const sum = meteoSummary(wk);
+    const src = m?.majLe ? `${m.type === 'releve' ? 'Relevé' : 'Prévision'} du ${new Date(m.majLe).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}` : '';
+    const cells = dates.map((d,i) => {
+      const j = dayFor(m, d);
+      return `<div class="mday"><small>${DAYS[i]} ${+d.slice(8)}</small><div class="ciel">${esc(j?.ciel || '—')}</div><div class="t">${j?.tmax != null ? j.tmax+'°' : '–'}<span> / ${j?.tmin != null ? j.tmin+'°' : '–'}</span></div><div class="pl">${j?.pluie != null ? (j.pluie > 0 ? num(j.pluie)+' mm' : 'sec') : ''}</div></div>`;
+    }).join('');
+    let edit = '';
+    if (editable && canWrite && meteoCol){
+      const rows = dates.map((d,i) => { const j = dayFor(m, d) || {};
+        return `<div class="row"><b>${DAYS[i]} ${+d.slice(8)}</b>
+          <select id="m-ciel-${i}" aria-label="Ciel ${DAYS[i]}"><option value="">—</option>${CIELS.map(c => `<option${c===j.ciel?' selected':''}>${c}</option>`).join('')}</select>
+          <input id="m-max-${i}" type="number" step="1" inputmode="numeric" value="${j.tmax ?? ''}" aria-label="Max ${DAYS[i]}">
+          <input id="m-min-${i}" type="number" step="1" inputmode="numeric" value="${j.tmin ?? ''}" aria-label="Min ${DAYS[i]}">
+          <input id="m-pl-${i}" type="number" min="0" step="0.1" inputmode="decimal" value="${j.pluie ?? ''}" aria-label="Pluie ${DAYS[i]}"></div>`; }).join('');
+      edit = `<details id="meteo-details"${meteoEditing?' open':''}><summary>Corriger la météo</summary>
+        <div class="meteo-edit"><div class="row hd"><span>Jour</span><span>Ciel</span><span>Max °C</span><span>Min °C</span><span>Pluie mm</span></div>${rows}
+        <div class="entry-foot"><p class="note">Remplissez avec ce qu'il a vraiment fait : le récap des anciennes promos s'en sert.</p><button class="btn" type="button" id="meteo-save">Enregistrer la météo</button></div></div></details>`;
+    }
+    el.innerHTML = `<section class="meteo" aria-label="Météo de la semaine"><div class="meteo-head"><h3>Météo Maisons-Alfort</h3><span class="note">${src || 'Pas encore de météo pour cette semaine'}</span></div>
+      <div class="meteo-days">${cells}</div>${sum ? `<div class="meteo-sum">${esc(sum)}</div>` : ''}${edit}</section>`;
+  }
+  document.addEventListener('toggle', ev => { if (ev.target.id === 'meteo-details') meteoEditing = ev.target.open; }, true);
+  document.addEventListener('click', async ev => {
+    if (!ev.target.closest('#meteo-save') || !meteoCol) return;
+    const wk = suiviWeek; const dates = salesDates(wk);
+    const old = meteo[wk] || {};
+    const jours = (old.jours || []).filter(j => !dates.includes(j.date));
+    dates.forEach((d,i) => {
+      const n = id => { const v = toNum($('#'+id).value); return v == null ? null : v; };
+      const j = {date:d, j:DAYS[i], ciel: $('#m-ciel-'+i).value || null, tmax: n('m-max-'+i), tmin: n('m-min-'+i), pluie: n('m-pl-'+i)};
+      if (j.ciel || j.tmax != null || j.tmin != null || j.pluie != null) jours.push(j);
+    });
+    jours.sort((a,b) => a.date.localeCompare(b.date));
+    const data = {semaine:wk, ville:'Maisons-Alfort', jours, type:'releve', source:'saisie', majLe:new Date().toISOString()};
+    if (uid) data.majPar = uid;
+    try { await meteoCol.doc(wk).set(data); meteo[wk] = data; meteoEditing = false; renderSuivi(); renderPlan(); renderOld(); toast('Météo enregistrée'); }
+    catch(e){ toast(errText(e)); }
+  });
+
+  // ---------- Anciennes promos ----------
+  const norm = t => String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  let oldQ = '';
+  function renderOld(){
+    const words = norm(oldQ).split(/\s+/).filter(Boolean);
+    const past = items.filter(e => { const w = semOf(e); return w && w < curWeek; });
+    const res = past.filter(e => {
+      if (!words.length) return true;
+      const hay = norm([e.produit, emplLabel(e), e.fournisseur, e.commentaireFin, wNum(semOf(e)), meteoSummary(semOf(e))].join(' '));
+      return words.every(w => hay.includes(w));
+    }).sort((a,b) => String(semOf(b)).localeCompare(String(semOf(a))) || byName(a,b));
+    const shown = res.slice(0, 150);
+    $('#old-count').textContent = !loaded ? 'Chargement…' : !past.length ? '' :
+      `${res.length} engagement${res.length>1?'s':''}${words.length ? ' trouvé'+(res.length>1?'s':'') : ' passé'+(res.length>1?'s':'')}${res.length>shown.length?' · 150 premiers affichés':''}`;
+    const list = $('#old-list');
+    if (!loaded){ list.innerHTML = ''; return; }
+    if (!past.length){ list.innerHTML = `<div class="empty"><h2>Pas encore d'anciennes promos</h2><p>Les engagements des semaines passées apparaîtront ici avec leur récap de fin de semaine.</p></div>`; return; }
+    if (!res.length){ list.innerHTML = `<div class="empty"><h2>Aucun résultat</h2><p>Aucune ancienne promo ne correspond à « ${esc(oldQ)} ».</p></div>`; return; }
+    list.innerHTML = shown.map(e => {
+      const c = calc(e); const w = semOf(e); const u = esc(e.unite||'kg');
+      const ec = (c.engage && e.resteFin != null) ? (c.engage - e.resteFin)/c.engage*100 : null;
+      const bilan = recaps[w]?.texte;
+      const msum = meteoSummary(w);
+      return `<article class="old-item" style="--zc:${isRayon(e)?'var(--z5)':zColor(e.emplacement)}">
+        <div style="min-width:0"><p class="prod">${esc(e.produit)}</p><div class="meta">${wLabel(w)} · ${esc(emplLabel(e))}</div></div>
+        <div class="old-figs">
+          <div><small>Prix TTC</small><b>${e.pv!=null ? eur(e.pv)+'/'+u : '–'}</b></div>
+          <div><small>Colis</small><b>${num(c.engage)}</b></div>
+          <div><small>Reste</small><b>${e.resteFin!=null ? num(e.resteFin) : '–'}</b></div>
+          <div><small>Écoulé</small><b class="ecoule ${ec==null?'':(ec<80?'low':'ok')}">${ec==null?'–':Math.round(ec)+' %'}</b></div>
+        </div>
+        <button class="btn ghost" type="button" data-recap-week="${w}" data-recap-id="${esc(e.id)}">Ouvrir le récap</button>
+        ${e.commentaireFin || bilan || msum ? `<div class="old-notes">${msum?`<span class="old-meteo">Météo ${wNum(w)} : ${esc(msum)}</span>`:''}${e.commentaireFin?`<span>Commentaire : <q>${esc(e.commentaireFin)}</q></span>`:''}${bilan?`<span>Bilan ${wNum(w)} : ${esc(bilan.length>160 ? bilan.slice(0,160)+'…' : bilan)}</span>`:''}</div>` : ''}
+      </article>`;
+    }).join('');
+  }
+  $('#old-q').addEventListener('input', e => { oldQ = e.target.value; renderOld(); });
+
+  function render(){ renderPlan(); renderSuivi(); renderOld(); }
+
+  // ---------- Formulaire de saisie ----------
+  let entryEmpl = EMPL[0].k, entrySem = curWeek, entryUnite = 'kg', entryJours = 6;
+  try { const s = JSON.parse(localStorage.getItem('eng-entry')||'{}'); if (s.empl) entryEmpl = s.empl; if (s.sem && s.sem >= curWeek) entrySem = s.sem; if (s.unite && UNITES.includes(s.unite)) entryUnite = s.unite; if (s.jours) entryJours = s.jours; } catch(e){}
+  $('#e-empl').innerHTML = emplOptions(entryEmpl);
+  $('#e-sem').innerHTML = weekOptions(entrySem);
+  $('#e-unite').innerHTML = uniteOptions(entryUnite);
+  
+  function readEntry(){
+    return {days: readDays('e'), uvc: toNum($('#e-uvc').value), unite: $('#e-unite').value};
+  }
+  function renderEntryTotal(){
+    const r = readEntry();
+    $('#e-pv-lbl').textContent = `Prix vente TTC €/${r.unite}`;
+    const el = $('#e-total');
+    const colis = sumDays(r.days);
+    if (!colis){ el.innerHTML = 'Total semaine'; return; }
+    el.innerHTML = `<b>${num(colis)} colis</b>${r.uvc ? `= ${num(colis*r.uvc)} ${esc(r.unite)}` : 'sur la semaine'}`;
+  }
+  $('#entry').addEventListener('input', renderEntryTotal);
+  renderEntryTotal();
+
+  $('#entry').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const msg = $('#entry-msg'); msg.classList.remove('alert');
+    const produit = $('#e-produit').value.trim();
+    const pv = toNum($('#e-pv').value);
+    const {days, uvc, unite} = readEntry();
+    const emplacement = $('#e-empl').value, semaine = $('#e-sem').value;
+    const fail = (m, el) => { msg.textContent = m; msg.classList.add('alert'); if (el) el.focus(); };
+    if (!produit) return fail('Indiquez le produit.', $('#e-produit'));
+    if (!sumDays(days)) return fail('Indiquez les colis d\'au moins un jour.', $('#e-d0'));
+    if (!col) return fail('La base partagée n\'est pas disponible : impossible d\'enregistrer.');
+    const [debut, fin] = weekRange(semaine);
+    const now = new Date().toISOString();
+    const colisSemaine = sumDays(days);
+    const data = {produit, pv, colisJours:days, uvc, unite, colisSemaine, qteTotale: uvc ? colisSemaine*uvc : null,
+      emplacement, semaine, debut, fin, tg: emplacement !== RAYON, tva:5.5, commandes:[], creeLe:now, majLe:now};
+    if (uid){ data.creePar = uid; data.majPar = uid; }
+    const btn = $('#e-save'); btn.disabled = true;
+    try {
+      await col.add(data);
+      try { localStorage.setItem('eng-entry', JSON.stringify({empl:emplacement, sem:semaine, unite})); } catch(e){}
+      $('#e-produit').value = ''; $('#e-pv').value = ''; writeDays('e', null); $('#e-uvc').value = ''; renderEntryTotal();
+      msg.textContent = `${produit} ajouté ${emplacement === RAYON ? 'en rayon' : 'en ' + zLabel(emplacement)}, ${wNum(semaine)}.`;
+      $('#e-produit').focus();
+    } catch(e){ msg.textContent = errText(e); msg.classList.add('alert'); }
+    finally { btn.disabled = !canWrite; }
+  });
+
+  const setSuivi = wk => { recapDirty = false; suiviWeek = wk; try { localStorage.setItem('eng-suivi-sem', wk); } catch(e){} renderSuivi(); ensureMeteo(wk); };
+  $('#sv-prev').addEventListener('click', () => setSuivi(shiftWeek(suiviWeek,-1)));
+  $('#sv-next').addEventListener('click', () => setSuivi(shiftWeek(suiviWeek,1)));
+  $('#sv-sem').addEventListener('change', e => setSuivi(e.target.value));
+
+  // ---------- Fiche détaillée ----------
+  const dlg = $('#dlg');
+  const F = id => $('#f-'+id);
+  function readForm(){
+    const semaine = F('sem').value || null;
+    const [debut, fin] = semaine ? weekRange(semaine) : [null, null];
+    return {
+      produit: F('produit').value.trim(), emplacement: F('empl').value, semaine, debut, fin,
+      colisJours: readDays('f'), uvc: toNum(F('uvc').value), unite: F('unite').value,
+      pv: toNum(F('pv').value), pa: toNum(F('pa').value), fournisseur: F('fournisseur').value.trim(),
+      tva: toNum(F('tva').value) ?? 5.5, notes: F('notes').value.trim(), commandes: editing.commandes
+    };
+  }
+  function renderCalc(){
+    $('#f-pv-lbl').textContent = `Prix de vente TTC (€/${F('unite').value})`;
+    $('#f-pa-lbl').textContent = `Prix d'achat HT (€/${F('unite').value})`;
+    const e = readForm(); const c = calc(e); const u = esc(e.unite);
+    $('#calc').innerHTML = `<span>PV HT <b>${eur(c.pvHT)}</b></span><span>Marge / ${u} <b>${eur(c.marge)}</b></span><span>Taux de marque <b>${pct(c.tm)}</b></span>${c.colisSem!=null?`<span>Total <b>${num(c.colisSem)} colis</b>${c.qteVente!=null?' = <b>'+num(c.qteVente)+' '+u+'</b>':''}</span>`:''}${c.qteVente&&c.marge!=null?`<span>Marge si tout vendu <b>${eur(c.marge*c.qteVente)}</b></span>`:''}${e.pa==null?'<span>Ajoutez le prix d\'achat pour voir la marge.</span>':''}`;
+  }
+  function openDlg(id){
+    const e = items.find(x=>x.id===id); if (!e) return;
+    editing = {id: e.id, commandes: Array.isArray(e.commandes) ? e.commandes.map(c=>({...c})) : []};
+    $('#dlg-title').textContent = e.produit || 'Engagement';
+    F('produit').value = e.produit||'';
+    F('empl').innerHTML = emplOptions(isRayon(e) ? RAYON : e.emplacement);
+    F('sem').innerHTML = weekOptions(semOf(e) || curWeek);
+    writeDays('f', daysOf(e)); F('uvc').value = e.uvc ?? '';
+    F('unite').innerHTML = uniteOptions(e.unite && e.unite!=='colis' ? e.unite : 'kg');
+    F('pv').value = e.pv ?? ''; F('pa').value = e.pa ?? ''; F('fournisseur').value = e.fournisseur||'';
+    F('tva').value = String(e.tva ?? 5.5); F('notes').value = e.notes||'';
+    $('#btn-del').hidden = !canWrite; $('#confirm').hidden = true; $('#form-err').hidden = true;
+    $('#btn-save').hidden = !canWrite; 
+    dlg.querySelectorAll('input,select,textarea').forEach(el => el.disabled = !canWrite);
+    renderCalc();
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+  }
+  function closeDlg(){ dlg.close ? dlg.close() : dlg.removeAttribute('open'); editing = null; }
+
+  $('#form').addEventListener('input', () => editing && renderCalc());
+  $('#btn-cancel').addEventListener('click', closeDlg);
+  $('#btn-del').addEventListener('click', () => { $('#confirm').hidden = false; });
+  $('#del-no').addEventListener('click', () => { $('#confirm').hidden = true; });
+  $('#del-yes').addEventListener('click', async () => {
+    if (!col || !editing) return;
+    try { await col.doc(editing.id).delete(); closeDlg(); toast('Engagement supprimé'); } catch(e){ showErr(e); }
+  });
+  $('#form').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    if (!col || !editing) return;
+    const data = readForm();
+    if (!data.produit){ showErr({message:'Indiquez le produit.'}); F('produit').focus(); return; }
+    data.tg = data.emplacement !== RAYON;
+    data.colisSemaine = sumDays(data.colisJours); data.qteTotale = data.uvc ? data.colisSemaine * data.uvc : null;
+    const old = items.find(x => x.id === editing.id) || {};
+    data.creeLe = old.creeLe || null; if (old.creePar) data.creePar = old.creePar;
+    data.majLe = new Date().toISOString(); if (uid) data.majPar = uid;
+    const btn = $('#btn-save'); btn.disabled = true;
+    try { await col.doc(editing.id).set(data); closeDlg(); toast('Engagement enregistré'); }
+    catch(e){ showErr(e); }
+    finally { btn.disabled = false; }
+  });
+  function errText(e){
+    if (e?.code === 'bad_code') return 'Code magasin incorrect.';
+    if (e?.code === 'invalid_argument') return 'Enregistrement refusé : ' + (e.message || 'données invalides') + '.';
+    if (e?.code === 'unavailable') return 'Connexion indisponible, réessayez dans un instant.';
+    if (e?.code === 'quota_exceeded') return 'La base est pleine : supprimez d\'anciens engagements terminés.';
+    return e?.message || 'Enregistrement impossible.';
+  }
+  function showErr(e){ const el = $('#form-err'); el.textContent = errText(e); el.hidden = false; }
+  let tt; function toast(m){ const t=$('#toast'); t.textContent=m; t.hidden=false; clearTimeout(tt); tt=setTimeout(()=>t.hidden=true,2200); }
+
+  document.addEventListener('click', ev => {
+    const it = ev.target.closest('[data-id]'); if (it && !dlg.contains(it)) { openDlg(it.dataset.id); return; }
+    const tb = ev.target.closest('.tab[data-tab]'); if (tb) { showTab(tb.dataset.tab); return; }
+    const rc = ev.target.closest('[data-recap-week]');
+    if (rc){
+      setSuivi(rc.dataset.recapWeek); showTab('suivi');
+      const row = document.querySelector(`tr[data-row="${CSS.escape(rc.dataset.recapId)}"]`);
+      const target = row || $('#recap-h');
+      target.scrollIntoView({block:'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+      if (row){ row.classList.add('flash'); setTimeout(() => row.classList.remove('flash'), 2500); }
+      return;
+    }
+    const ae = ev.target.closest('[data-add-empl]');
+    if (ae){ $('#e-empl').value = ae.dataset.addEmpl; $('#e-sem').innerHTML = weekOptions(ae.dataset.week || curWeek); showTab('saisie'); $('#e-produit').focus(); return; }
+  });
+
+  showTab(tab);
+  render();
+
+  // ---------- Base partagée (Supabase) ----------
+  const CFG = window.APP_CONFIG || {};
+  const LS = {
+    get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+    set(k,v){ try { if (v == null || v === '') localStorage.removeItem(k); else localStorage.setItem(k, v); } catch(e){} }
+  };
+  let CODE = LS.get('promo-code'), NOM = LS.get('promo-nom') || '';
+  async function rpc(fn, args){
+    let r;
+    try {
+      r = await fetch(String(CFG.supabaseUrl).replace(/\/rest\/v1\/?$/,'').replace(/\/+$/,'') + '/rest/v1/rpc/' + fn, {
+        method: 'POST',
+        // les clés "anon" (JWT, eyJ…) vont aussi dans Authorization ; les clés "sb_publishable_…" seulement dans apikey
+        headers: Object.assign({'Content-Type':'application/json', apikey: CFG.supabaseKey},
+          /^eyJ/.test(CFG.supabaseKey) ? {Authorization: 'Bearer ' + CFG.supabaseKey} : {}),
+        body: JSON.stringify(args)
+      });
+    } catch(e){ const er = new Error('pas de connexion'); er.code = 'unavailable'; throw er; }
+    const txt = await r.text(); let body = null;
+    try { body = txt ? JSON.parse(txt) : null; } catch(e){}
+    if (!r.ok){
+      const m = (body && (body.message || body.hint)) || ('erreur ' + r.status);
+      const er = new Error(m);
+      er.code = /code_invalide/.test(m) ? 'bad_code' : (r.status >= 500 ? 'unavailable' : 'invalid_argument');
+      throw er;
+    }
+    return body;
+  }
+  const cache = {engagements: new Map(), recaps: new Map(), meteo: new Map()};
+  const listeners = {engagements: [], recaps: [], meteo: []};
+  const snapOf = name => ({docs: [...cache[name]].map(([id, data]) => ({id, data: () => data})), metadata: {fromCache: false}});
+  const notify = name => listeners[name].forEach(fn => fn(snapOf(name)));
+  async function loadAll(){
+    const rows = await rpc('app_load', {p_code: CODE});
+    Object.values(cache).forEach(m => m.clear());
+    (rows || []).forEach(r => { if (cache[r.collection]) cache[r.collection].set(r.id, r.data); });
+    loaded = true;
+    Object.keys(cache).forEach(notify);
+  }
+  const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  function collection(name){
+    const save = async (id, data) => {
+      cache[name].set(id, data); notify(name);
+      try { await rpc('app_save', {p_code: CODE, p_collection: name, p_id: id, p_data: data}); }
+      catch(e){ loadAll().catch(() => {}); if (e.code === 'bad_code') lock('Le code magasin a changé. Entrez le nouveau code.'); throw e; }
+    };
+    return {
+      add: async data => { const id = newId(); await save(id, data); return {id}; },
+      doc: id => ({
+        set: data => save(id, data),
+        update: patch => save(id, {...(cache[name].get(id) || {}), ...patch}),
+        delete: async () => {
+          cache[name].delete(id); notify(name);
+          try { await rpc('app_delete', {p_code: CODE, p_collection: name, p_id: id}); }
+          catch(e){ loadAll().catch(() => {}); throw e; }
+        }
+      }),
+      onSnapshot: next => { listeners[name].push(next); return () => {}; }
+    };
+  }
+
+  // ---------- Météo automatique (Open-Meteo, Maisons-Alfort) ----------
+  const LAT = 48.8058, LON = 2.4378;
+  const wmo = c => c == null ? null : c <= 1 ? 'Soleil' : c === 2 ? 'Éclaircies' : c === 3 ? 'Couvert'
+    : (c === 45 || c === 48) ? 'Brouillard' : (c >= 51 && c <= 67) ? 'Pluie'
+    : ((c >= 71 && c <= 77) || c === 85 || c === 86) ? 'Neige' : (c >= 80 && c <= 82) ? 'Averses' : c >= 95 ? 'Orage' : null;
+  const fetching = new Set();
+  async function ensureMeteo(wk){
+    if (!CODE || !loaded || fetching.has(wk)) return;
+    const m = meteo[wk]; const dates = salesDates(wk); const t = today();
+    if (m && m.source === 'saisie') return;                                   // corrigée à la main : on n'y touche pas
+    if (m && m.type === 'releve' && dates.every(d => dayFor(m, d))) return;   // semaine passée complète
+    if (m && m.majLe && Date.now() - Date.parse(m.majLe) < 6 * 3600e3) return; // déjà à jour (moins de 6 h)
+    const start = dates[0], end = dates[dates.length - 1];
+    if ((Date.parse(start) - Date.parse(t)) / DAY > 15) return;               // trop loin pour une prévision
+    const old = (Date.parse(t) - Date.parse(end)) / DAY > 60;
+    const url = (old ? 'https://archive-api.open-meteo.com/v1/archive' : 'https://api.open-meteo.com/v1/forecast')
+      + `?latitude=${LAT}&longitude=${LON}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FParis&start_date=${start}&end_date=${end}`;
+    fetching.add(wk);
+    try {
+      const r = await fetch(url); if (!r.ok) return;
+      const d = (await r.json()).daily; if (!d || !d.time) return;
+      const rnd = (v, k) => v == null ? null : Math.round(v * k) / k;
+      const jours = d.time.map((date, i) => ({date, j: DAYS[dates.indexOf(date)] || '', ciel: wmo(d.weather_code?.[i]),
+        tmin: rnd(d.temperature_2m_min?.[i], 1), tmax: rnd(d.temperature_2m_max?.[i], 1), pluie: rnd(d.precipitation_sum?.[i], 10)}))
+        .filter(x => dates.includes(x.date) && (x.tmax != null || x.tmin != null));
+      if (!jours.length) return;
+      (m?.jours || []).forEach(o => { if (!jours.some(x => x.date === o.date)) jours.push(o); });
+      jours.sort((a, b) => a.date.localeCompare(b.date));
+      await meteoCol.doc(wk).set({semaine: wk, ville: 'Maisons-Alfort', jours, type: end < t ? 'releve' : 'prevision',
+        source: 'Open-Meteo', majLe: new Date().toISOString()});
+    } catch(e){ /* météo indisponible : on réessaiera plus tard */ }
+    finally { fetching.delete(wk); }
+  }
+  const ensureMeteoAll = () => [curWeek, shiftWeek(curWeek, 1), suiviWeek].forEach(w => ensureMeteo(w));
+
+  // ---------- Code magasin et démarrage ----------
+  const status = $('#status');
+  let pollTimer = null;
+  function lock(msg){
+    CODE = null; LS.set('promo-code', null); clearInterval(pollTimer);
+    $('#gate').hidden = false; $('#g-err').hidden = !msg; $('#g-err').textContent = msg || '';
+    $('#g-code').value = ''; $('#g-nom').value = NOM;
+    setTimeout(() => $('#g-code').focus(), 0);
+  }
+  async function start(){
+    status.hidden = false; status.classList.remove('alert'); status.textContent = 'Chargement des engagements…';
+    try { await loadAll(); }
+    catch(e){
+      if (e.code === 'bad_code'){ lock('Code magasin incorrect.'); return false; }
+      status.classList.add('alert'); status.textContent = 'Impossible de joindre la base de données. Vérifiez la connexion internet puis rechargez la page.';
+      return true;
+    }
+    status.hidden = true; render(); ensureMeteoAll();
+    $('#who').textContent = NOM ? 'Connecté·e : ' + NOM : '';
+    clearInterval(pollTimer);
+    pollTimer = setInterval(() => {
+      if (document.hidden || !CODE) return;
+      loadAll().then(() => { status.hidden = true; ensureMeteoAll(); })
+        .catch(e => { if (e.code === 'bad_code') lock('Le code magasin a changé. Entrez le nouveau code.'); });
+    }, 20000);
+    return true;
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && CODE) loadAll().catch(() => {}); });
+  $('#gate-form').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const c = $('#g-code').value.trim();
+    if (!c){ $('#g-err').textContent = 'Entrez le code magasin.'; $('#g-err').hidden = false; return; }
+    CODE = c; NOM = $('#g-nom').value.trim(); uid = NOM || null;
+    const btn = $('#g-go'); btn.disabled = true; $('#g-err').hidden = true;
+    const ok = await start();
+    btn.disabled = false;
+    if (CODE && ok){ LS.set('promo-code', CODE); LS.set('promo-nom', NOM); $('#gate').hidden = true; }
+  });
+  $('#logout').addEventListener('click', () => lock());
+
+  col = collection('engagements');
+  recapCol = collection('recaps');
+  meteoCol = collection('meteo');
+  meteoCol.onSnapshot(snap => { meteo = {}; snap.docs.forEach(d => { meteo[d.id] = d.data(); }); renderPlan(); renderSuivi(); renderOld(); });
+  recapCol.onSnapshot(snap => { recaps = {}; snap.docs.forEach(d => { recaps[d.id] = d.data(); }); renderSuivi(); renderOld(); });
+  col.onSnapshot(snap => { items = snap.docs.map(d => ({id: d.id, ...d.data()})); render(); });
+
+  if (!CFG.supabaseUrl || !CFG.supabaseKey || /COLLEZ/.test(CFG.supabaseUrl + CFG.supabaseKey)){
+    status.hidden = false; status.classList.add('alert');
+    status.textContent = "L'app n'est pas encore reliée à sa base de données : remplissez le fichier config.js (voir le guide d'installation).";
+    canWrite = false; $('#e-save').disabled = true;
+  } else if (CODE){ uid = NOM || null; start(); }
+  else lock();
+})();
+</script>
+</body>
+</html>
