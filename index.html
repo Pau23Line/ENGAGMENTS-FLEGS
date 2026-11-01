@@ -957,7 +957,8 @@ tr.flash td{background:var(--amber-soft)}
     } catch(e){ /* météo indisponible : on réessaiera plus tard */ }
     finally { fetching.delete(wk); }
   }
-  const ensureMeteoAll = () => [curWeek, shiftWeek(curWeek, 1), suiviWeek].forEach(w => ensureMeteo(w));
+  // semaine passée (pour figer les relevés), semaine en cours, semaine suivante, semaine affichée dans Suivi
+  const ensureMeteoAll = () => [...new Set([shiftWeek(curWeek, -1), curWeek, shiftWeek(curWeek, 1), suiviWeek])].forEach(w => ensureMeteo(w));
 
   // ---------- Code magasin et démarrage ----------
   const status = $('#status');
