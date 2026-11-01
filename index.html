@@ -229,6 +229,10 @@ tr.flash td{background:var(--amber-soft)}
 .meteo-edit input,.meteo-edit select{padding:6px;font-size:14px}
 @media (max-width:520px){.mday .ciel{font-size:11px}.mday .t{font-size:17px}.meteo-edit .row{grid-template-columns:44px 1.3fr 1fr 1fr 1fr}}
 .old-meteo{font-size:13px;color:var(--muted)}
+.band-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fl-art{display:block;width:clamp(120px,30vw,300px);height:auto;flex-shrink:0}
+@media (max-width:480px){.band-top{align-items:flex-start}.fl-art{width:104px;margin-top:4px}}
+.gate-art{width:100%;max-width:280px;justify-self:center;background:var(--band);border-radius:8px;padding:8px 12px}
 .gate{position:fixed;inset:0;z-index:50;background:var(--band);display:grid;place-items:center;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px}
 .gate-card{background:var(--surface);color:var(--ink);border-radius:10px;padding:24px;width:min(420px,100%);display:grid;gap:14px}
 .gate-card h2{margin:0;font-size:28px;text-transform:uppercase;line-height:1}
@@ -244,9 +248,37 @@ tr.flash td{background:var(--amber-soft)}
 
 <header class="band">
   <div class="band-in">
-    <div>
+    <div class="band-top">
+    <div style="min-width:0">
       <h1>Engagements <span>promo</span> F&amp;L</h1>
       <p class="sub">Ce qui passe en TG et au podium chaque semaine, à quel prix, en quelle quantité.</p>
+    </div>
+    <svg class="fl-art" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <g transform="translate(500 116) scale(0.95)">
+    <path d="M 0 40 C -46 30 -60 -14 -40 -44 C -18 -24 -6 6 0 40 Z" fill="#3a8a2f"/>
+    <path d="M 0 40 C 46 30 60 -14 40 -44 C 18 -24 6 6 0 40 Z" fill="#4caf3f"/>
+    <path d="M 0 40 C -10 0 -6 -36 0 -58 C 6 -36 10 0 0 40 Z" fill="#6cc04a"/>
+  </g>
+  <g transform="translate(370 108) rotate(66) scale(0.66)">
+    <path d="M -26 -96 C -30 -40 -16 40 0 104 C 16 40 30 -40 26 -96 Z" fill="#f07d00"/>
+    <path d="M -18 -60 h 14 M 6 -30 h 14 M -14 0 h 12 M 4 30 h 12" stroke="#c45f00" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 0 -96 C -8 -130 -30 -146 -44 -150 C -26 -128 -18 -112 -12 -96 Z" fill="#3a8a2f"/>
+    <path d="M 0 -96 C 2 -134 10 -156 20 -168 C 22 -142 16 -116 10 -96 Z" fill="#4caf3f"/>
+    <path d="M 4 -96 C 22 -122 44 -132 58 -132 C 44 -116 30 -104 16 -94 Z" fill="#3a8a2f"/>
+  </g>
+  <g transform="translate(232 100) rotate(-12) scale(0.8)">
+    <path d="M -78 -10 C -60 46 40 62 84 6 C 88 0 84 -6 78 -4 C 30 22 -36 14 -64 -22 Z" fill="#ffd21f"/>
+    <path d="M -78 -10 C -60 46 40 62 84 6" stroke="#d9a400" stroke-width="5" fill="none"/>
+    <path d="M -64 -22 L -82 -30 L -84 -14 L -78 -10 Z" fill="#6b4a12"/>
+    <circle cx="84" cy="2" r="5" fill="#6b4a12"/>
+  </g>
+  <g transform="translate(82 112) scale(0.74)">
+    <path d="M 0 -58 C -30 -82 -92 -70 -92 -6 C -92 54 -48 92 -20 86 C -8 84 -6 78 0 78 C 6 78 8 84 20 86 C 48 92 92 54 92 -6 C 92 -70 30 -82 0 -58 Z" fill="#e2001a"/>
+    <path d="M -50 -34 C -62 -22 -66 0 -62 16" stroke="#ff8a8a" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <path d="M 0 -56 C 0 -74 4 -88 12 -98" stroke="#6b3e1d" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M 10 -84 C 30 -108 60 -106 70 -98 C 58 -78 30 -72 10 -84 Z" fill="#4caf3f"/>
+  </g>
+</svg>
     </div>
     <nav class="tabs" role="tablist" aria-label="Sections">
       <button class="tab" role="tab" id="tab-btn-semaine" aria-controls="tab-semaine" data-tab="semaine" type="button">Semaine en cours</button>
@@ -392,6 +424,32 @@ tr.flash td{background:var(--amber-soft)}
 
 <div class="gate" id="gate" hidden>
   <form class="gate-card" id="gate-form" novalidate>
+    <svg class="fl-art gate-art" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <g transform="translate(500 116) scale(0.95)">
+    <path d="M 0 40 C -46 30 -60 -14 -40 -44 C -18 -24 -6 6 0 40 Z" fill="#3a8a2f"/>
+    <path d="M 0 40 C 46 30 60 -14 40 -44 C 18 -24 6 6 0 40 Z" fill="#4caf3f"/>
+    <path d="M 0 40 C -10 0 -6 -36 0 -58 C 6 -36 10 0 0 40 Z" fill="#6cc04a"/>
+  </g>
+  <g transform="translate(370 108) rotate(66) scale(0.66)">
+    <path d="M -26 -96 C -30 -40 -16 40 0 104 C 16 40 30 -40 26 -96 Z" fill="#f07d00"/>
+    <path d="M -18 -60 h 14 M 6 -30 h 14 M -14 0 h 12 M 4 30 h 12" stroke="#c45f00" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 0 -96 C -8 -130 -30 -146 -44 -150 C -26 -128 -18 -112 -12 -96 Z" fill="#3a8a2f"/>
+    <path d="M 0 -96 C 2 -134 10 -156 20 -168 C 22 -142 16 -116 10 -96 Z" fill="#4caf3f"/>
+    <path d="M 4 -96 C 22 -122 44 -132 58 -132 C 44 -116 30 -104 16 -94 Z" fill="#3a8a2f"/>
+  </g>
+  <g transform="translate(232 100) rotate(-12) scale(0.8)">
+    <path d="M -78 -10 C -60 46 40 62 84 6 C 88 0 84 -6 78 -4 C 30 22 -36 14 -64 -22 Z" fill="#ffd21f"/>
+    <path d="M -78 -10 C -60 46 40 62 84 6" stroke="#d9a400" stroke-width="5" fill="none"/>
+    <path d="M -64 -22 L -82 -30 L -84 -14 L -78 -10 Z" fill="#6b4a12"/>
+    <circle cx="84" cy="2" r="5" fill="#6b4a12"/>
+  </g>
+  <g transform="translate(82 112) scale(0.74)">
+    <path d="M 0 -58 C -30 -82 -92 -70 -92 -6 C -92 54 -48 92 -20 86 C -8 84 -6 78 0 78 C 6 78 8 84 20 86 C 48 92 92 54 92 -6 C 92 -70 30 -82 0 -58 Z" fill="#e2001a"/>
+    <path d="M -50 -34 C -62 -22 -66 0 -62 16" stroke="#ff8a8a" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <path d="M 0 -56 C 0 -74 4 -88 12 -98" stroke="#6b3e1d" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M 10 -84 C 30 -108 60 -106 70 -98 C 58 -78 30 -72 10 -84 Z" fill="#4caf3f"/>
+  </g>
+</svg>
     <h2>Engagements promo F&amp;L</h2>
     <p class="note">Entrez le code magasin pour ouvrir l'app.</p>
     <label for="g-code">Code magasin<input id="g-code" type="password" autocomplete="current-password" required></label>
