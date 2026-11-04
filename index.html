@@ -99,6 +99,10 @@ button{font:inherit;cursor:pointer}
 .days legend{font-size:13px;font-weight:600;color:var(--muted);padding:0 4px}
 .days-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .days-grid label{font-size:12px;text-align:center}
+.days-grid label.off{opacity:.35}
+.days-grid label.off input{background:transparent;border-style:dashed}
+.entry-grid .full6{grid-column:1/-1}
+.start-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:1px solid currentColor;border-radius:4px;padding:0 5px;margin-right:4px}
 .days-grid input{text-align:center;padding:8px 4px}
 .days-foot{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
 .linkbtn{border:0;background:none;color:var(--leaf);font-weight:700;font-size:13px;padding:2px 0;text-decoration:underline}
@@ -313,10 +317,13 @@ tr.flash td{background:var(--amber-soft)}
         <label class="s2">Semaine
           <select id="e-sem" required></select>
         </label>
-        <label class="s2 wide">Produit<input id="e-produit" required placeholder="Clémentine de Corse cat. I" autocomplete="off"></label>
+        <label class="s2">Début de la promo
+          <select id="e-start"></select>
+        </label>
+        <label class="full6 wide">Produit<input id="e-produit" required placeholder="Clémentine de Corse cat. I" autocomplete="off"></label>
         <fieldset class="days"><legend>Colis par jour</legend>
           <div class="days-grid" id="e-days"></div>
-          <div class="days-foot"><button class="linkbtn" type="button" data-fill="e">Copier le mardi sur les autres jours</button><span class="note">Laissez vide un jour sans livraison.</span></div>
+          <div class="days-foot"><button class="linkbtn" type="button" data-fill="e">Copier le 1er jour sur les suivants</button><span class="note">Laissez vide un jour sans livraison.</span></div>
         </fieldset>
         <label>Qté par colis<input id="e-uvc" type="number" min="0" step="any" inputmode="decimal" placeholder="10"></label>
         <label>Unité
@@ -326,7 +333,7 @@ tr.flash td{background:var(--amber-soft)}
         <div class="total s2" id="e-total" aria-live="polite">Total semaine</div>
       </div>
       <div class="entry-foot">
-        <p class="note" id="entry-msg">L'emplacement et la semaine restent sélectionnés pour enchaîner les saisies.</p>
+        <p class="note" id="entry-msg">L'emplacement, la semaine et le jour de début restent sélectionnés pour enchaîner les saisies.</p>
         <button class="btn" type="submit" id="e-save">Ajouter</button>
       </div>
     </form>
@@ -389,9 +396,10 @@ tr.flash td{background:var(--amber-soft)}
       <label class="full">Produit<input id="f-produit" required></label>
       <label>Emplacement<select id="f-empl"></select></label>
       <label>Semaine<select id="f-sem"></select></label>
+      <label>Début de la promo<select id="f-start"></select></label>
       <fieldset class="days full"><legend>Colis par jour</legend>
         <div class="days-grid" id="f-days"></div>
-        <div class="days-foot"><button class="linkbtn" type="button" data-fill="f">Copier le mardi sur les autres jours</button></div>
+        <div class="days-foot"><button class="linkbtn" type="button" data-fill="f">Copier le 1er jour sur les suivants</button></div>
       </fieldset>
       <label>Qté par colis<input id="f-uvc" type="number" min="0" step="any" inputmode="decimal"></label>
       <label>Unité<select id="f-unite"></select></label>
@@ -510,7 +518,27 @@ tr.flash td{background:var(--amber-soft)}
   const UNITES = ['kg','pièce','barquette','sachet','botte','filet'];
   const uniteOptions = sel => UNITES.concat(sel && !UNITES.includes(sel) ? [sel] : []).map(u => `<option${u===sel?' selected':''}>${u}</option>`).join('');
   const DAYS = ['Mar','Mer','Jeu','Ven','Sam'];
-  ['e','f'].forEach(pf => { $('#'+pf+'-days').innerHTML = DAYS.map((d,i) => `<label for="${pf}-d${i}">${d}<input id="${pf}-d${i}" type="number" min="0" step="any" inputmode="decimal"></label>`).join(''); });
+  const DAYS_LONG = ['Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  ['e','f'].forEach(pf => { $('#'+pf+'-days').innerHTML = DAYS.map((d,i) => `<label for="${pf}-d${i}" id="${pf}-dl${i}"><span>${d}</span><input id="${pf}-d${i}" type="number" min="0" step="any" inputmode="decimal"></label>`).join(''); });
+  // Jour de début de la promo : 0 = mardi … 4 = samedi
+  const startOf = e => Number.isInteger(e.jourDebut) && e.jourDebut >= 0 && e.jourDebut < DAYS.length ? e.jourDebut : 0;
+  const dayDate = (wk, i) => { const m = /^(\d{4})-W(\d{2})$/.exec(wk||''); if (!m) return null; const [mon] = weekRange(wk); return new Date(Date.parse(mon+'T12:00:00Z') + (i+1)*864e5).toISOString().slice(0,10); };
+  const shortDate = d => d ? new Date(d+'T12:00:00Z').toLocaleDateString('fr-FR',{day:'numeric',month:'short',timeZone:'UTC'}) : '';
+  function startOptions(wk, sel){
+    return DAYS_LONG.map((d,i) => `<option value="${i}"${i===sel?' selected':''}>${d} ${shortDate(dayDate(wk,i))}</option>`).join('');
+  }
+  function applyStart(pf){
+    const sel = $('#'+pf+'-start'); const st = +sel.value || 0; const wk = $('#'+pf+'-sem').value;
+    sel.innerHTML = startOptions(wk, st);
+    DAYS.forEach((d,i) => {
+      const off = i < st; const inp = $('#'+pf+'-d'+i); const lab = $('#'+pf+'-dl'+i);
+      lab.classList.toggle('off', off);
+      lab.querySelector('span').textContent = `${d} ${+String(dayDate(wk,i)||'').slice(8) || ''}`.trim();
+      if (off) inp.value = '';
+      inp.disabled = off || !canWrite;
+      inp.title = off ? 'Avant le début de la promo' : '';
+    });
+  }
   const readDays = pf => DAYS.map((_,i) => { const v = toNum($('#'+pf+'-d'+i).value); return v != null && v > 0 ? v : 0; });
   const writeDays = (pf, arr) => DAYS.forEach((_,i) => { $('#'+pf+'-d'+i).value = arr && arr[i] ? arr[i] : ''; });
   const sumDays = arr => arr.reduce((a,b) => a + (b||0), 0);
@@ -519,9 +547,9 @@ tr.flash td{background:var(--amber-soft)}
   const daysOf = e => Array.isArray(e.colisJours) ? (e.colisJours.length === 7 ? e.colisJours.slice(1,6) : e.colisJours) : (e.colisJour != null ? DAYS.map(() => e.colisJour) : null);
   document.addEventListener('click', ev => {
     const b = ev.target.closest('[data-fill]'); if (!b) return;
-    const pf = b.dataset.fill; const first = $('#'+pf+'-d0').value;
-    if (!first) { $('#'+pf+'-d0').focus(); return; }
-    for (let i=1;i<DAYS.length;i++) $('#'+pf+'-d'+i).value = first;
+    const pf = b.dataset.fill; const st = +$('#'+pf+'-start').value || 0; const first = $('#'+pf+'-d'+st).value;
+    if (!first) { $('#'+pf+'-d'+st).focus(); return; }
+    for (let i=st+1;i<DAYS.length;i++) $('#'+pf+'-d'+i).value = first;
     $('#'+(pf==='e'?'entry':'form')).dispatchEvent(new Event('input'));
   });
   const RAYON = 'Rayon';
@@ -555,7 +583,8 @@ tr.flash td{background:var(--amber-soft)}
     const reste = engage != null ? engage - cmd : null;
     const real = engage ? cmd/engage*100 : null;
     const sem = semOf(e);
-    const [deb, fin] = sem ? weekRange(sem) : [e.debut, e.fin];
+    const [deb0, fin] = sem ? weekRange(sem) : [e.debut, e.fin];
+    const deb = e.dateDebut || deb0;
     const t = today();
     let st = 'now';
     if (deb && t < deb) st = 'soon'; else if (fin && t > fin) st = 'done';
@@ -581,7 +610,9 @@ tr.flash td{background:var(--amber-soft)}
   function qtyLine(e){
     const c = calc(e); const u = esc(e.unite||'kg');
     const dj = daysOf(e);
-    if (dj) return `${dj.map((v,i) => v ? `${DAYS[i]} <b style="font-size:inherit">${num(v)}</b>` : '').filter(Boolean).join(' · ')}<br>${num(c.colisSem)} colis × ${num(e.uvc)} ${u}${c.qteVente!=null?' = '+num(c.qteVente)+' '+u:''}`;
+    const st = startOf(e);
+    const startTxt = st > 0 ? `<span class="start-tag">Dès ${DAYS_LONG[st].toLowerCase()} ${shortDate(e.dateDebut || dayDate(semOf(e), st))}</span>` : '';
+    if (dj) return startTxt + `${dj.map((v,i) => v ? `${DAYS[i]} <b style="font-size:inherit">${num(v)}</b>` : '').filter(Boolean).join(' · ')}<br>${num(c.colisSem)} colis × ${num(e.uvc)} ${u}${c.qteVente!=null?' = '+num(c.qteVente)+' '+u:''}`;
     return `${num(e.qte)} ${u}`;
   }
   const byName = (x,y) => String(x.produit).localeCompare(String(y.produit));
@@ -784,11 +815,15 @@ tr.flash td{background:var(--amber-soft)}
   function render(){ renderPlan(); renderSuivi(); renderOld(); }
 
   // ---------- Formulaire de saisie ----------
-  let entryEmpl = EMPL[0].k, entrySem = curWeek, entryUnite = 'kg', entryJours = 6;
-  try { const s = JSON.parse(localStorage.getItem('eng-entry')||'{}'); if (s.empl) entryEmpl = s.empl; if (s.sem && s.sem >= curWeek) entrySem = s.sem; if (s.unite && UNITES.includes(s.unite)) entryUnite = s.unite; if (s.jours) entryJours = s.jours; } catch(e){}
+  let entryEmpl = EMPL[0].k, entrySem = curWeek, entryUnite = 'kg', entryStart = 0;
+  try { const s = JSON.parse(localStorage.getItem('eng-entry')||'{}'); if (s.empl) entryEmpl = s.empl; if (s.sem && s.sem >= curWeek) entrySem = s.sem; if (s.unite && UNITES.includes(s.unite)) entryUnite = s.unite; if (Number.isInteger(s.start) && s.start >= 0 && s.start < 5) entryStart = s.start; } catch(e){}
   $('#e-empl').innerHTML = emplOptions(entryEmpl);
   $('#e-sem').innerHTML = weekOptions(entrySem);
   $('#e-unite').innerHTML = uniteOptions(entryUnite);
+  $('#e-start').innerHTML = startOptions(entrySem, entryStart);
+  applyStart('e');
+  $('#e-sem').addEventListener('change', () => { applyStart('e'); renderEntryTotal(); });
+  $('#e-start').addEventListener('change', () => { applyStart('e'); renderEntryTotal(); });
   
   function readEntry(){
     return {days: readDays('e'), uvc: toNum($('#e-uvc').value), unite: $('#e-unite').value};
@@ -813,20 +848,21 @@ tr.flash td{background:var(--amber-soft)}
     const emplacement = $('#e-empl').value, semaine = $('#e-sem').value;
     const fail = (m, el) => { msg.textContent = m; msg.classList.add('alert'); if (el) el.focus(); };
     if (!produit) return fail('Indiquez le produit.', $('#e-produit'));
-    if (!sumDays(days)) return fail('Indiquez les colis d\'au moins un jour.', $('#e-d0'));
+    const jourDebut = +$('#e-start').value || 0;
+    if (!sumDays(days)) return fail('Indiquez les colis d\'au moins un jour.', $('#e-d'+jourDebut));
     if (!col) return fail('La base partagée n\'est pas disponible : impossible d\'enregistrer.');
     const [debut, fin] = weekRange(semaine);
     const now = new Date().toISOString();
     const colisSemaine = sumDays(days);
-    const data = {produit, pv, colisJours:days, uvc, unite, colisSemaine, qteTotale: uvc ? colisSemaine*uvc : null,
+    const data = {produit, pv, colisJours:days, jourDebut, dateDebut: dayDate(semaine, jourDebut), uvc, unite, colisSemaine, qteTotale: uvc ? colisSemaine*uvc : null,
       emplacement, semaine, debut, fin, tg: emplacement !== RAYON, tva:5.5, commandes:[], creeLe:now, majLe:now};
     if (uid){ data.creePar = uid; data.majPar = uid; }
     const btn = $('#e-save'); btn.disabled = true;
     try {
       await col.add(data);
-      try { localStorage.setItem('eng-entry', JSON.stringify({empl:emplacement, sem:semaine, unite})); } catch(e){}
+      try { localStorage.setItem('eng-entry', JSON.stringify({empl:emplacement, sem:semaine, unite, start:jourDebut})); } catch(e){}
       $('#e-produit').value = ''; $('#e-pv').value = ''; writeDays('e', null); $('#e-uvc').value = ''; renderEntryTotal();
-      msg.textContent = `${produit} ajouté ${emplacement === RAYON ? 'en rayon' : 'en ' + zLabel(emplacement)}, ${wNum(semaine)}.`;
+      msg.textContent = `${produit} ajouté ${emplacement === RAYON ? 'en rayon' : 'en ' + zLabel(emplacement)}, ${wNum(semaine)}, à partir du ${DAYS_LONG[jourDebut].toLowerCase()} ${shortDate(dayDate(semaine, jourDebut))}`.replace(/\.?$/, '.');
       $('#e-produit').focus();
     } catch(e){ msg.textContent = errText(e); msg.classList.add('alert'); }
     finally { btn.disabled = !canWrite; }
@@ -845,7 +881,8 @@ tr.flash td{background:var(--amber-soft)}
     const [debut, fin] = semaine ? weekRange(semaine) : [null, null];
     return {
       produit: F('produit').value.trim(), emplacement: F('empl').value, semaine, debut, fin,
-      colisJours: readDays('f'), uvc: toNum(F('uvc').value), unite: F('unite').value,
+      colisJours: readDays('f'), jourDebut: +F('start').value || 0, dateDebut: semaine ? dayDate(semaine, +F('start').value || 0) : null,
+      uvc: toNum(F('uvc').value), unite: F('unite').value,
       pv: toNum(F('pv').value), pa: toNum(F('pa').value), fournisseur: F('fournisseur').value.trim(),
       tva: toNum(F('tva').value) ?? 5.5, notes: F('notes').value.trim(), commandes: editing.commandes
     };
@@ -863,6 +900,7 @@ tr.flash td{background:var(--amber-soft)}
     F('produit').value = e.produit||'';
     F('empl').innerHTML = emplOptions(isRayon(e) ? RAYON : e.emplacement);
     F('sem').innerHTML = weekOptions(semOf(e) || curWeek);
+    F('start').innerHTML = startOptions(semOf(e) || curWeek, startOf(e));
     writeDays('f', daysOf(e)); F('uvc').value = e.uvc ?? '';
     F('unite').innerHTML = uniteOptions(e.unite && e.unite!=='colis' ? e.unite : 'kg');
     F('pv').value = e.pv ?? ''; F('pa').value = e.pa ?? ''; F('fournisseur').value = e.fournisseur||'';
@@ -870,12 +908,15 @@ tr.flash td{background:var(--amber-soft)}
     $('#btn-del').hidden = !canWrite; $('#confirm').hidden = true; $('#form-err').hidden = true;
     $('#btn-save').hidden = !canWrite; 
     dlg.querySelectorAll('input,select,textarea').forEach(el => el.disabled = !canWrite);
+    applyStart('f');
     renderCalc();
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
   }
   function closeDlg(){ dlg.close ? dlg.close() : dlg.removeAttribute('open'); editing = null; }
 
   $('#form').addEventListener('input', () => editing && renderCalc());
+  $('#f-sem').addEventListener('change', () => { applyStart('f'); renderCalc(); });
+  $('#f-start').addEventListener('change', () => { applyStart('f'); renderCalc(); });
   $('#btn-cancel').addEventListener('click', closeDlg);
   $('#btn-del').addEventListener('click', () => { $('#confirm').hidden = false; });
   $('#del-no').addEventListener('click', () => { $('#confirm').hidden = true; });
@@ -921,7 +962,7 @@ tr.flash td{background:var(--amber-soft)}
       return;
     }
     const ae = ev.target.closest('[data-add-empl]');
-    if (ae){ $('#e-empl').value = ae.dataset.addEmpl; $('#e-sem').innerHTML = weekOptions(ae.dataset.week || curWeek); showTab('saisie'); $('#e-produit').focus(); return; }
+    if (ae){ $('#e-empl').value = ae.dataset.addEmpl; $('#e-sem').innerHTML = weekOptions(ae.dataset.week || curWeek); applyStart('e'); showTab('saisie'); $('#e-produit').focus(); return; }
   });
 
   showTab(tab);
