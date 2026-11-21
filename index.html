@@ -119,9 +119,11 @@ button{font:inherit;cursor:pointer}
 .week-pick{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .week-pick select{width:auto;max-width:100%;font-weight:600}
 .week-pick .btn{padding:8px 12px}
-.add-comp{border:1.5px dashed var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:9px 10px;font-weight:700;font-size:14px;text-align:center;width:100%}
-.add-comp:hover{border-color:var(--zc,var(--ink));background:var(--bg)}
-.add-comp:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+.h3-right{display:inline-flex;align-items:center;gap:10px}
+.add-comp{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:0;background:var(--z-ink);color:var(--z5);font-family:var(--font-body);font-size:24px;font-weight:700;line-height:1;display:inline-grid;place-items:center;padding:0;opacity:1}
+.add-comp:hover{transform:scale(1.08)}
+.add-comp:focus-visible{outline:2px solid var(--z-ink);outline-offset:2px}
+#dlg-comp{width:min(420px,calc(100vw - 24px))}
 .comp-tag,.slot-item .comp-tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:var(--ink);color:var(--surface);border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px}
 .slot-empty button{border:0;background:none;color:var(--leaf);font-weight:700;text-decoration:underline}
 
@@ -393,6 +395,18 @@ tr.flash td{background:var(--amber-soft)}
   <footer class="foot"><span id="who"></span><button class="linkbtn" type="button" id="logout">Changer de code ou de prénom</button></footer>
 </div>
 
+<dialog id="dlg-comp">
+  <form class="dlg" id="comp-form" novalidate>
+    <h2 id="comp-title">Produit complémentaire</h2>
+    <label for="comp-produit">Produit<input id="comp-produit" required autocomplete="off" placeholder="Compote de pomme, noix…"></label>
+    <p class="note alert" id="comp-err" hidden></p>
+    <div class="actions"><div class="right">
+      <button class="btn ghost" type="button" id="comp-cancel">Annuler</button>
+      <button class="btn" type="submit" id="comp-save">Ajouter</button>
+    </div></div>
+  </form>
+</dialog>
+
 <dialog id="dlg">
   <form class="dlg" id="form" novalidate>
     <h2 id="dlg-title">Engagement</h2>
@@ -617,6 +631,7 @@ tr.flash td{background:var(--amber-soft)}
     const st = startOf(e);
     const startTxt = st > 0 ? `<span class="start-tag">Dès ${DAYS_LONG[st].toLowerCase()} ${shortDate(e.dateDebut || dayDate(semOf(e), st))}</span>` : '';
     if (dj) return startTxt + `${dj.map((v,i) => v ? `${DAYS[i]} <b style="font-size:inherit">${num(v)}</b>` : '').filter(Boolean).join(' · ')}<br>${num(c.colisSem)} colis × ${num(e.uvc)} ${u}${c.qteVente!=null?' = '+num(c.qteVente)+' '+u:''}`;
+    if (e.qte == null) return '';
     return `${num(e.qte)} ${u}`;
   }
   const byName = (x,y) => String(x.produit).localeCompare(String(y.produit));
@@ -632,21 +647,22 @@ tr.flash td{background:var(--amber-soft)}
       prog = `<div class="mini"><div class="mini-row"><span>Commandé <b>${num(c.cmd)}</b> / ${num(c.engage)} ${pu}</span>${c.reste>0 ? `<span class="${c.urgent?'warn':''}">reste ${num(c.reste)}</span>` : (c.reste<0 ? `<span>+${num(-c.reste)}</span>` : '<span>tenu</span>')}</div>
         <div class="bar"><i class="${c.real>100?'over':''}" style="width:${w}%;${c.real>100?'':'background:'+color}"></i></div></div>`;
     }
-    return `<button class="slot-item" type="button" data-id="${esc(e.id)}" style="--zc:${color}"><b>${esc(e.produit)}${e.complementaire ? '<span class="comp-tag">Complémentaire</span>' : ''}</b><div class="px">${e.pv!=null ? eur(e.pv)+'<small style="font-size:13px;font-weight:600"> /'+u+'</small>' : 'Prix ?'}</div><span>${qtyLine(e)}</span>${prog}</button>`;
+    return `<button class="slot-item" type="button" data-id="${esc(e.id)}" style="--zc:${color}"><b>${esc(e.produit)}${e.complementaire ? '<span class="comp-tag">Complémentaire</span>' : ''}</b>${e.pv!=null ? '<div class="px">'+eur(e.pv)+'<small style="font-size:13px;font-weight:600"> /'+u+'</small></div>' : (e.complementaire ? '' : '<div class="px">Prix ?</div>')}${qtyLine(e) ? '<span>'+qtyLine(e)+'</span>' : ''}${prog}</button>`;
   }
-  const addCompHtml = (empl, week) => (loaded && canWrite) ? `<button class="add-comp" type="button" data-add-comp="${esc(empl)}" data-week="${week}">+ Ajouter un produit complémentaire</button>` : '';
+  const addCompHtml = (empl, week) => (loaded && canWrite) ? `<button class="add-comp" type="button" data-add-comp="${esc(empl)}" data-week="${week}" aria-label="Ajouter un produit complémentaire ${esc(empl === RAYON ? 'en rayon' : 'en ' + zLabel(empl))}" title="Ajouter un produit complémentaire">+</button>` : '';
+  const headRight = (n, empl, week, progress) => `<span class="h3-right"><span>${countTxt(n)}</span>${progress ? addCompHtml(empl, week) : ''}</span>`;
   const emptyHtml = (label, empl, week, noLink) => `<div class="slot-empty">${loaded ? `${label}${canWrite && !noLink ? `<button type="button" data-add-empl="${esc(empl)}" data-week="${week}">Ajouter un produit</button>` : ''}` : 'Chargement…'}</div>`;
   const countTxt = n => n ? n + (n>1?' produits':' produit') : '';
   function renderBoard(week, planEl, rayonEl, progress){
     const wkItems = items.filter(e => semOf(e) === week);
     planEl.innerHTML = EMPL.map(z => {
       const list = wkItems.filter(e => e.emplacement === z.k).sort(byName);
-      return `<div class="slot" style="--zc:${z.c}"><h3>${esc(zLabel(z.k))}<span>${countTxt(list.length)}</span></h3>
-        <div class="slot-body">${list.length ? list.map(e => itemHtml(e, z.c, progress)).join('') : emptyHtml('Rien d\'engagé', z.k, week, progress)}${progress ? addCompHtml(z.k, week) : ''}</div></div>`;
+      return `<div class="slot" style="--zc:${z.c}"><h3>${esc(zLabel(z.k))}${headRight(list.length, z.k, week, progress)}</h3>
+        <div class="slot-body">${list.length ? list.map(e => itemHtml(e, z.c, progress)).join('') : emptyHtml('Rien d\'engagé', z.k, week, progress)}</div></div>`;
     }).join('');
     const ray = wkItems.filter(isRayon).sort(byName);
-    rayonEl.innerHTML = `<section class="rayon"><h3>En rayon<span>${countTxt(ray.length)}</span></h3>
-      <div class="rayon-grid">${ray.length ? ray.map(e => itemHtml(e, 'var(--z5)', progress)).join('') : emptyHtml('Aucun engagement qui reste en rayon', RAYON, week, progress)}${progress ? `<div style="grid-column:1/-1">${addCompHtml(RAYON, week)}</div>` : ''}</div></section>`;
+    rayonEl.innerHTML = `<section class="rayon"><h3>En rayon${headRight(ray.length, RAYON, week, progress)}</h3>
+      <div class="rayon-grid">${ray.length ? ray.map(e => itemHtml(e, 'var(--z5)', progress)).join('') : emptyHtml('Aucun engagement qui reste en rayon', RAYON, week, progress)}</div></section>`;
     return wkItems;
   }
   const weekTitle = wk => { const [a,b] = weekRange(wk); return `Semaine ${+wk.slice(6)}<small>${fmtDate(a)} → ${fmtDate(b)}${wk===curWeek?' · en cours':''}</small>`; };
@@ -917,25 +933,30 @@ tr.flash td{background:var(--amber-soft)}
     renderCalc();
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
   }
+  const dlgComp = $('#dlg-comp'); let compTarget = null;
   function openNewComp(empl, week){
-    editing = {id: null, commandes: [], complementaire: true};
-    $('#dlg-title').textContent = 'Produit complémentaire · ' + (empl === RAYON ? 'En rayon' : zLabel(empl)) + ' · ' + wNum(week);
-    F('produit').value = '';
-    F('empl').innerHTML = emplOptions(empl);
-    F('sem').innerHTML = weekOptions(week);
-    F('start').innerHTML = startOptions(week, 0);
-    writeDays('f', null); F('uvc').value = '';
-    F('unite').innerHTML = uniteOptions('kg');
-    F('pv').value = ''; F('pa').value = ''; F('fournisseur').value = '';
-    F('tva').value = '5.5'; F('notes').value = '';
-    $('#btn-del').hidden = true; $('#confirm').hidden = true; $('#form-err').hidden = true;
-    $('#btn-save').hidden = !canWrite;
-    dlg.querySelectorAll('input,select,textarea').forEach(el => el.disabled = !canWrite);
-    applyStart('f');
-    renderCalc();
-    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
-    F('produit').focus();
+    compTarget = {empl, week};
+    $('#comp-title').textContent = 'Ajouter dans ' + (empl === RAYON ? 'En rayon' : zLabel(empl)) + ' · ' + wNum(week);
+    $('#comp-produit').value = ''; $('#comp-err').hidden = true;
+    if (dlgComp.showModal) dlgComp.showModal(); else dlgComp.setAttribute('open','');
+    $('#comp-produit').focus();
   }
+  const closeComp = () => { dlgComp.close ? dlgComp.close() : dlgComp.removeAttribute('open'); compTarget = null; };
+  $('#comp-cancel').addEventListener('click', closeComp);
+  $('#comp-form').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const produit = $('#comp-produit').value.trim();
+    const err = m => { $('#comp-err').textContent = m; $('#comp-err').hidden = false; };
+    if (!produit){ err('Indiquez le produit.'); $('#comp-produit').focus(); return; }
+    if (!col || !compTarget) return err('La base partagée n\'est pas disponible.');
+    const {empl, week} = compTarget; const [debut, fin] = weekRange(week); const now = new Date().toISOString();
+    const data = {produit, emplacement: empl, semaine: week, debut, fin, tg: empl !== RAYON, complementaire: true, creeLe: now, majLe: now};
+    if (uid){ data.creePar = uid; data.majPar = uid; }
+    const btn = $('#comp-save'); btn.disabled = true;
+    try { await col.add(data); closeComp(); toast(produit + ' ajouté'); }
+    catch(e){ err(errText(e)); }
+    finally { btn.disabled = false; }
+  });
   function closeDlg(){ dlg.close ? dlg.close() : dlg.removeAttribute('open'); editing = null; }
 
   $('#form').addEventListener('input', () => editing && renderCalc());
